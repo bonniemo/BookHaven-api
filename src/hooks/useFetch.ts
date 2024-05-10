@@ -8,11 +8,12 @@ type ApiResponse<T> = {
 
 export const useFetch = <T>(url:string): ApiResponse<T> => {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!url) return;
       setLoading(true);
       setError(null);
 

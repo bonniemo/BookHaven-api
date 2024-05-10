@@ -20,7 +20,6 @@ const ReadBooks = () => {
               src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
               alt=""
             />
-
             <p>{book.title}</p>
             <p>{book.author_name}</p>
             <p>My rating: {book.userRating}</p>

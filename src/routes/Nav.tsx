@@ -6,7 +6,7 @@ import iconSearch from "../Assets/search.png";
 const Nav = () => {
   return (
     <>
-      <nav className="flex justify-between items-center">
+      <nav className="flex justify-between items-center bg-fuchsia-50">
         <h1 className="mx-2 text-3xl font-serif italic">BookHaven</h1>
         <ul className="flex gap-5 justify-end p-4">
           <li><NavLink to ="/" className="flex flex-col items-center hover:font-bold"><img src={iconHome} className="w-8"/>Home</NavLink></li>
