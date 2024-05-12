@@ -12,6 +12,7 @@ import FavouriteAuthors from "./routes/BookCorner/FavouriteAuthors";
 import ReadBooks from "./routes/BookCorner/ReadBooks";
 import AggregatedData from "./routes/BookCorner/AggregatedData";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
