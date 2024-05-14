@@ -6,5 +6,7 @@ export const useFormInput = (initialValue:string) => {
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {        
         setValue(e.target.value)
     }
-    return {value, onChange: handleChange}
+
+    const reset = () => setValue(initialValue)
+    return {value, onChange: handleChange, reset}
 }

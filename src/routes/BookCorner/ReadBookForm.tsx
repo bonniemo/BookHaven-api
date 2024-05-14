@@ -35,7 +35,11 @@ const ReadBookForm = ({
         userNumPages: userNumPages.value,
       },
     });
+    userRating.reset();
+    userReview.reset();
+    userNumPages.reset();
   };
+  
   return (
     <>
       <article className=" w-fit">
