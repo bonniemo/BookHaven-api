@@ -47,6 +47,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
         {docs.map((book: Book) => (
           <DisplayDataCard key={book.key}>
             <img
+            className="w-full h-52 object-contain object-center"
               src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
               alt=""
             />

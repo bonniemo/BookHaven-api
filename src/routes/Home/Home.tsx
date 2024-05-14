@@ -20,7 +20,7 @@ const Home = () => {
   const searchInput = useFormInput("");
   const { handleClick, searchUrl } = useSearch(baseUrl, searchInput.value);
   return (
-    <article className="bg-pink-300 p-1.5">
+    <article className="my-4 p-1.5">
       <>
         <button className="px-1 border border-black" onClick={toggleState}>
           {toggleBtnLabel}
@@ -29,7 +29,7 @@ const Home = () => {
           {inputLabel}
         </label>
         <input
-          className="px-1.5 mx-1.5"
+          className="px-1.5 mx-1.5 rounded-md p-1"
           type="text"
           placeholder={placeholder}
           {...searchInput}
