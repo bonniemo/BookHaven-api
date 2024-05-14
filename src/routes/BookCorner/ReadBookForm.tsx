@@ -34,10 +34,7 @@ const ReadBookForm = ({
         userReview: userReview.value,
         userNumPages: userNumPages.value,
       },
-    });
-    userRating.reset();
-    userReview.reset();
-    userNumPages.reset();
+    });    
   };
   
   return (
@@ -53,7 +50,7 @@ const ReadBookForm = ({
         <form className="flex flex-col" onSubmit={handleSubmitRead}>
           <>
             <label htmlFor="userRating ">Rating</label>
-            <input type="text" {...userRating} id="userRating" />
+            <input type="number" {...userRating} id="userRating" />
           </>
           <>
             <label htmlFor="userReview">Your Review</label>
@@ -61,7 +58,7 @@ const ReadBookForm = ({
           </>
           <>
             <label htmlFor="userNumPages">Number of pages</label>
-            <input type="tex" {...userNumPages} id="userNumPages" />
+            <input type="number" {...userNumPages} id="userNumPages" />
           </>
           <button type="submit">Add to my read Books</button>
         </form>
