@@ -5,7 +5,7 @@ import SearchTitle from "./SearchTitle";
 
 const Home = () => {
   const { toggle, toggleState } = useToggle();  
-  const toggleBtnLabel = toggle ? "Search for author" : "Search for Book Title";
+  const toggleBtnLabel = toggle ? "Search for Book Title" : "Search for author";
 
   return (
     <article className="my-4 p-1.5">
