@@ -16,7 +16,7 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {
     top_subjects: string[]
   ) => {
     dispatch({
-      type: "ADDFAVAUTHOR",
+      type: "ADD_FAV_AUTHOR",
       payload: {
         key: key,
         name: name,

@@ -6,9 +6,9 @@ import DisplayDataCardContainer from "../../components/DisplayDataCardContainer"
 const FavouriteBooks = () => {
   const { state, dispatch } = useContext(GlobalContext);
 
-  const handleRemoveFav = (key: string) => {
+  const removeFav = (key: string) => {
     dispatch({
-      type: "REMOVEFAVBOOK",
+      type: "REMOVE_FAV_BOOK",
       payload: key,
     });
   };
@@ -24,7 +24,7 @@ const FavouriteBooks = () => {
           <p>{book.title}</p>
           <p>{book.author_name}</p>
           <p>{book.first_publish_year}</p>
-          <button onClick={() => handleRemoveFav(book.key)}>delete</button>
+          <button onClick={() => removeFav(book.key)}>delete</button>
         </DisplayDataCard>
       ))}
     </DisplayDataCardContainer>

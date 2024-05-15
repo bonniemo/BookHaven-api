@@ -5,7 +5,7 @@ import DisplayDataCardContainer from "../../components/DisplayDataCardContainer"
 
 const ReadBooks = () => {
   const { state, dispatch } = useContext(GlobalContext);
-  const handleDelete = (key: string) => {
+  const deleteRead = (key: string) => {
     dispatch({
       type: "REMOVE_READ_BOOK",
       payload: key,
@@ -25,7 +25,7 @@ const ReadBooks = () => {
             <p>My rating: {book.userRating}</p>
             <p>My review: {book.userReview}</p>
             <p>Number of pages: {book.userNumPages}</p>
-            <button onClick={() => handleDelete(book.dataKey)}>Delete</button>
+            <button onClick={() => deleteRead(book.dataKey)}>Delete</button>
       </DisplayDataCard>
     ))}
     </DisplayDataCardContainer>

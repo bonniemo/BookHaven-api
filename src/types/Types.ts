@@ -51,9 +51,9 @@ export type ReadBook = {
 }
 
 export type Action =
-  | { type: "ADDFAVBOOK"; payload: Book }
-  | { type: "REMOVEFAVBOOK"; payload: string }
-  | { type: "ADDFAVAUTHOR"; payload: Author }
+  | { type: "ADD_FAV_BOOK"; payload: Book }
+  | { type: "REMOVE_FAV_BOOK"; payload: string }
+  | { type: "ADD_FAV_AUTHOR"; payload: Author }
   | { type: "REMOVE_FAV_AUTHOR"; payload: string }
   | { type: "ADD_READ_BOOK"; payload: ReadBook }
   | { type: "REMOVE_READ_BOOK"; payload: string }

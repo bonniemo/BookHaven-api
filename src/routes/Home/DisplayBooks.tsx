@@ -19,7 +19,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     cover_i: string
   ) => {
     dispatch({
-      type: "ADDFAVBOOK",
+      type: "ADD_FAV_BOOK",
       payload: {
         key: key,
         title: title,
@@ -30,7 +30,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     });
   };
 
-  const handleAddRead = (
+  const addRead = (
     key: string,
     title: string,
     author_name: string[],
@@ -70,7 +70,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
             </button>
             <button
               onClick={() =>
-                handleAddRead(
+                addRead(
                   book.key,
                   book.title,
                   book.author_name,
