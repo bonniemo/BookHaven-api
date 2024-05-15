@@ -39,7 +39,7 @@ const ReadBookForm = ({
   
   return (
     <>
-      <article className=" w-fit">
+      <article className="w-full h-full">
         <h2>Add to my Reading History</h2>
         <img
           src={`https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`}

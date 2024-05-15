@@ -51,7 +51,6 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
               src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
               alt=""
             />
-
             <p>{book.title}</p>
             <p>{book.author_name}</p>
             <p>{book.first_publish_year}</p>
@@ -81,19 +80,18 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
             >
               Mark as Read
             </button>
+            {readFormVisibility &&  selectedBook?.key === book.key && (
+              <ReadBookForm
+                dataKey={selectedBook.key}
+                title={selectedBook.title}
+                author_name={selectedBook.author_name}
+                cover_i={selectedBook.cover_i}
+              />        
+            )}
           </DisplayDataCard>
         ))}
       </DisplayDataCardContainer>
-      {readFormVisibility && selectedBook && (
-        <ReadBookForm
-          dataKey={selectedBook.key}
-          title={selectedBook.title}
-          author_name={selectedBook.author_name}
-          cover_i={selectedBook.cover_i}
-        />
-      )}
     </>
   );
 };
-
 export default DisplayBooks;
