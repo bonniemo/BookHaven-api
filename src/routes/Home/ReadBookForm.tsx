@@ -7,6 +7,8 @@ type ReadBookProps = {
   title: string;
   author_name: string[];
   cover_i: string;
+  setReviewFormVisibility: React.Dispatch<React.SetStateAction<boolean>>
+  setHideBookInfo: React.Dispatch<React.SetStateAction<{[key: string]: boolean}>>
 };
 
 const ReadBookForm = ({
@@ -14,6 +16,8 @@ const ReadBookForm = ({
   title,
   author_name,
   cover_i,
+  setReviewFormVisibility,
+  setHideBookInfo
 }: ReadBookProps) => {
   const { dispatch } = useContext(GlobalContext);
 
@@ -34,7 +38,9 @@ const ReadBookForm = ({
         userReview: userReview.value,
         userNumPages: userNumPages.value,
       },
-    });    
+    }); 
+    setReviewFormVisibility(false);  
+    setHideBookInfo((prevState) => ({...prevState, [dataKey]: false}))
   };
   
   return (

@@ -3,14 +3,15 @@ import { DisplayBookProps, Book } from "../../types/Types";
 import { GlobalContext } from "../../state/GlobalStateContext";
 import DisplayDataCard from "../../components/DisplayDataCard";
 import DisplayDataCardContainer from "../../components/DisplayDataCardContainer";
-import ReadBookForm from "../BookCorner/ReadBookForm";
+import ReadBookForm from "./ReadBookForm";
 
 const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   const docs = data.docs;
   const { dispatch } = useContext(GlobalContext);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [readFormVisibility, setReadFormVisibility] = useState(false);
+  const [reviewFormVisibility, setReviewFormVisibility] = useState<boolean>(false);
   const [hideBookInfo, setHideBookInfo] = useState<{ [key: string] : boolean }>({});
+  const [isRead, setIsRead] = useState<{ [key: string] : boolean}>({});   
 
   const addFavouriteBook = (
     key: string,
@@ -40,7 +41,8 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   ) => {
     setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
     setHideBookInfo((prevState) => ({...prevState, [key]: true}))
-    setReadFormVisibility(true);
+    setReviewFormVisibility(true);
+    setIsRead((prevState) => ({...prevState, [key]: true}))
   };
 
   return (
@@ -82,16 +84,18 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                     )
                   }
                 >
-                  Mark as Read
+                  {isRead[book.key] ? "Added to my Read Books" : "Add to my Read Books"}
                 </button>
               </section>
             )}
-            {readFormVisibility && selectedBook?.key === book.key && (
+            {reviewFormVisibility && selectedBook?.key === book.key && (
               <ReadBookForm
                 dataKey={selectedBook.key}
                 title={selectedBook.title}
                 author_name={selectedBook.author_name}
                 cover_i={selectedBook.cover_i}
+                setReviewFormVisibility={setReviewFormVisibility}
+                setHideBookInfo={setHideBookInfo}
               />
             )}
           </DisplayDataCard>
