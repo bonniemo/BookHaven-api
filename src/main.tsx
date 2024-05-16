@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         path: "/BookCorner",
         element: <BookCorner />,
         children: [
-          { path: "/BookCorner/FavouriteBooks", element: <FavouriteBooks /> },
+          { path: "/BookCorner", element: <FavouriteBooks /> },
           { path: "/BookCorner/FavouriteAuthors", element: <FavouriteAuthors /> },
           { path: "/BookCorner/ReadBooks", element: <ReadBooks /> },
           { path: "/BookCorner/AggregatedData", element: <AggregatedData /> },

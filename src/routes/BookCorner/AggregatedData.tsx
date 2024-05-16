@@ -30,8 +30,8 @@ const AggregatedData = () => {
 
   return (
     <>
-      <article>
-        <h2>My Statistics</h2>
+      <article className="mx-10 mt-10 leading-loose text-lg">
+        <h2 className="mb-5 text-2xl">My Reading Statistics</h2>
         <p>Number of read books: {readBooks}</p>
         <p>Number of read pages: {readPages}</p>
         <p>Number of favourite authors: {numOfFavAuthors}</p>

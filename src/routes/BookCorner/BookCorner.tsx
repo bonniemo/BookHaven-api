@@ -10,7 +10,7 @@ const BookCorner = () => {
       <nav className=" border-r-4 border-stone-900 flex p-10">
         <ul className="flex flex-col gap-8">
           <li className="">
-            <NavLink className="" to="/BookCorner/FavouriteBooks">
+            <NavLink className="" to="/BookCorner">
               <img src={fav} className="mx-2" />
               My Favourite <span className="block">Books</span>
             </NavLink>

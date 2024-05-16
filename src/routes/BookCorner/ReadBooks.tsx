@@ -13,6 +13,9 @@ const ReadBooks = () => {
   }
 
   return (
+    <>
+    <h2 className="mx-10 my-5 text-2xl">My Reading History</h2>
+    
     <DisplayDataCardContainer>
     {state.readBooks.map((book, index) => (
       <DisplayDataCard key={index}>
@@ -29,6 +32,7 @@ const ReadBooks = () => {
       </DisplayDataCard>
     ))}
     </DisplayDataCardContainer>
+    </>
   )
 }
 

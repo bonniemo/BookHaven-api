@@ -14,6 +14,8 @@ const FavouriteAuthors = () => {
   };
 
   return (
+    <>
+      <h2 className="mx-10 my-5 text-2xl">My favourite Authors</h2>
     <DisplayDataCardContainer>
       {state.favouriteAuthors.map((author, index) => (
         <DisplayDataCard key={index}>
@@ -33,6 +35,7 @@ const FavouriteAuthors = () => {
         </DisplayDataCard>
       ))}
     </DisplayDataCardContainer>
+    </>
   );
 };
 

@@ -13,26 +13,28 @@ const FavouriteBooks = () => {
     });
   };
   return (
-    <DisplayDataCardContainer>
-      {state.favouriteBooks.map((book, index) => (
-        <DisplayDataCard key={index}>
-          <img
-            src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
-            alt=""
-          />
-
-          <p>{book.title}</p>
-          <p>{book.author_name}</p>
-          <p>{book.first_publish_year}</p>
-          <button
-            className="my-5 px-5 py-2 bg-red-400 rounded-lg"
-            onClick={() => removeFav(book.key)}
-          >
-            delete
-          </button>
-        </DisplayDataCard>
-      ))}
-    </DisplayDataCardContainer>
+    <>
+      <h2 className="mx-10 mt-10 mb-5 text-2xl">My favourite Books</h2>
+      <DisplayDataCardContainer>
+        {state.favouriteBooks.map((book, index) => (
+          <DisplayDataCard key={index}>
+            <img
+              src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+              alt=""
+            />
+            <p>{book.title}</p>
+            <p>{book.author_name}</p>
+            <p>{book.first_publish_year}</p>
+            <button
+              className="my-5 px-5 py-2 bg-red-400 rounded-lg"
+              onClick={() => removeFav(book.key)}
+            >
+              delete
+            </button>
+          </DisplayDataCard>
+        ))}
+      </DisplayDataCardContainer>
+    </>
   );
 };
 
