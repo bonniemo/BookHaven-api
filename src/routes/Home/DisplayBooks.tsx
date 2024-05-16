@@ -39,6 +39,14 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     setIsFav((prevState) => ({ ...prevState, [key]: true }));
   };
 
+  const removeFavouriteBook = (key: string) => {
+    dispatch({
+      type: "REMOVE_FAV_BOOK",
+      payload: key,
+    });
+    setIsFav((prevState) => ({ ...prevState, [key]: false }));
+  };
+
   const addRead = (
     key: string,
     title: string,
@@ -67,24 +75,36 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                 <p>{book.title}</p>
                 <p>{book.author_name}</p>
                 <p>{book.first_publish_year}</p>
+                {!isFav[book.key] ? (
+                  <button
+                    className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+                    onClick={() =>
+                      addFavouriteBook(
+                        book.key,
+                        book.title,
+                        book.author_name,
+                        book.first_publish_year,
+                        book.cover_i
+                      )
+                    }
+                  >
+                    <GoHeart className="text-3xl" />
+                  </button>
+                ) : (
+                  <button
+                    className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+                    onClick={() => removeFavouriteBook(book.key)}
+                  >
+                    <GoHeartFill className="text-3xl" />
+                  </button>
+                )}
+
                 <button
-                  className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
-                  onClick={() =>
-                    addFavouriteBook(
-                      book.key,
-                      book.title,
-                      book.author_name,
-                      book.first_publish_year,
-                      book.cover_i
-                    )
+                  className={
+                    isRead[book.key]
+                      ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400"
+                      : "my-5 px-5 py-2 bg-pink-400 rounded-lg"
                   }
-                >
-                   {isFav[book.key] ? <GoHeartFill className="text-3xl"/>  : <GoHeart className="text-3xl"/> }
-                  
-                </button>
-                
-                <button
-                  className={isRead[book.key] ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400" : "my-5 px-5 py-2 bg-pink-400 rounded-lg"}
                   onClick={() =>
                     addRead(
                       book.key,
