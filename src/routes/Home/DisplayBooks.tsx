@@ -17,6 +17,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     {}
   );
   const [isRead, setIsRead] = useState<{ [key: string]: boolean }>({});
+  const [isFav, setIsFav] = useState<{ [key: string]: boolean }>({});
 
   const addFavouriteBook = (
     key: string,
@@ -35,6 +36,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
         cover_i: cover_i,
       },
     });
+    setIsFav((prevState) => ({ ...prevState, [key]: true }));
   };
 
   const addRead = (
@@ -77,9 +79,10 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                     )
                   }
                 >
-                  <GoHeartFill className="text-3xl"/> 
+                   {isFav[book.key] ? <GoHeartFill className="text-3xl"/>  : <GoHeart className="text-3xl"/> }
+                  
                 </button>
-                {/* <GoHeart className="text-3xl/> */}
+                
                 <button
                   className={isRead[book.key] ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400" : "my-5 px-5 py-2 bg-pink-400 rounded-lg"}
                   onClick={() =>
@@ -93,7 +96,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                   }
                 >
                   {isRead[book.key] ? (
-                    <p className="">Added to my Read Books</p>
+                    <p>Added to my Read Books</p>
                   ) : (
                     <p>Add to my Read Books</p>
                   )}
