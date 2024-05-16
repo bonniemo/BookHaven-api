@@ -71,7 +71,7 @@ const ReadBookForm = ({
             <input type="number" {...userNumPages} id="userNumPages" />
           </>
           <button
-            className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+            className="my-5 px-5 py-2 bg-pink-400 rounded-lg"
             type="submit"
           >
             Submit

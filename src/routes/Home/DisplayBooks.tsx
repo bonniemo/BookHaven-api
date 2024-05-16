@@ -4,6 +4,8 @@ import { GlobalContext } from "../../state/GlobalStateContext";
 import DisplayDataCard from "../../components/DisplayDataCard";
 import DisplayDataCardContainer from "../../components/DisplayDataCardContainer";
 import ReadBookForm from "./ReadBookForm";
+import { GoHeartFill } from "react-icons/go";
+import { GoHeart } from "react-icons/go";
 
 const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   const docs = data.docs;
@@ -75,10 +77,11 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                     )
                   }
                 >
-                  Add Favourite
+                  <GoHeartFill className="text-3xl"/> 
                 </button>
+                {/* <GoHeart className="text-3xl/> */}
                 <button
-                  className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+                  className={isRead[book.key] ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400" : "my-5 px-5 py-2 bg-pink-400 rounded-lg"}
                   onClick={() =>
                     addRead(
                       book.key,
