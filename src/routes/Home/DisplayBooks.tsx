@@ -8,10 +8,11 @@ import ReadBookForm from "../BookCorner/ReadBookForm";
 const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   const docs = data.docs;
   const { dispatch } = useContext(GlobalContext);
-  const [readFormVisibility, setReadFormVisibility] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [readFormVisibility, setReadFormVisibility] = useState(false);
+  const [hideBookInfo, setHideBookInfo] = useState<{ [key: string] : boolean }>({});
 
-  const handleClick = (
+  const addFavouriteBook = (
     key: string,
     title: string,
     author_name: string[],
@@ -38,6 +39,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     cover_i: string
   ) => {
     setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
+    setHideBookInfo((prevState) => ({...prevState, [key]: true}))
     setReadFormVisibility(true);
   };
 
@@ -46,47 +48,51 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
       <DisplayDataCardContainer>
         {docs.map((book: Book) => (
           <DisplayDataCard key={book.key}>
-            <img
-            className="w-full h-52 object-contain object-center"
-              src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
-              alt=""
-            />
-            <p>{book.title}</p>
-            <p>{book.author_name}</p>
-            <p>{book.first_publish_year}</p>
-            <button
-              onClick={() =>
-                handleClick(
-                  book.key,
-                  book.title,
-                  book.author_name,
-                  book.first_publish_year,
-                  book.cover_i
-                )
-              }
-            >
-              Add Favourite
-            </button>
-            <button
-              onClick={() =>
-                addRead(
-                  book.key,
-                  book.title,
-                  book.author_name,
-                  book.first_publish_year,
-                  book.cover_i
-                )
-              }
-            >
-              Mark as Read
-            </button>
-            {readFormVisibility &&  selectedBook?.key === book.key && (
+            {!hideBookInfo[book.key] && (
+              <section className="book_details">
+                <img
+                  className="w-full h-52 object-contain object-center"
+                  src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                  alt=""
+                />
+                <p>{book.title}</p>
+                <p>{book.author_name}</p>
+                <p>{book.first_publish_year}</p>
+                <button
+                  onClick={() =>
+                    addFavouriteBook(
+                      book.key,
+                      book.title,
+                      book.author_name,
+                      book.first_publish_year,
+                      book.cover_i
+                    )
+                  }
+                >
+                  Add Favourite
+                </button>
+                <button
+                  onClick={() =>
+                    addRead(
+                      book.key,
+                      book.title,
+                      book.author_name,
+                      book.first_publish_year,
+                      book.cover_i
+                    )
+                  }
+                >
+                  Mark as Read
+                </button>
+              </section>
+            )}
+            {readFormVisibility && selectedBook?.key === book.key && (
               <ReadBookForm
                 dataKey={selectedBook.key}
                 title={selectedBook.title}
                 author_name={selectedBook.author_name}
                 cover_i={selectedBook.cover_i}
-              />        
+              />
             )}
           </DisplayDataCard>
         ))}
