@@ -16,7 +16,10 @@ const BookCorner = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className="hover:font-bold" to="/BookCorner/FavouriteAuthors">
+            <NavLink
+              className="hover:font-bold"
+              to="/BookCorner/FavouriteAuthors"
+            >
               <img src={author} className="mx-2" />
               My Favourite <span className="block">Authors</span>
             </NavLink>
@@ -28,7 +31,10 @@ const BookCorner = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className="hover:font-bold" to="/BookCorner/ReadingStatistics">
+            <NavLink
+              className="hover:font-bold"
+              to="/BookCorner/ReadingStatistics"
+            >
               <img src={readingStats} className="mx-2" />
               My Reading <span className="block">Statistics</span>
             </NavLink>
