@@ -11,13 +11,13 @@ const SearchAuthor = () => {
   return (
     <>      
       <input
-        className="my-5 px-5 py-2 border-l-2 border-t-2 border-b-2 border-black"
+        className="my-5 px-5 py-2 w-80 border-l-2 border-t-2 border-b-2 border-black"
         type="text"
         placeholder="Author"
         {...searchInput}
       />
       <button
-        className="my-5 px-5 py-2 w-80 bg-pink-300 border-black border-t-2 border-b-2 border-r-2"
+        className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2"
         onClick={handleClick}
       >
         Search

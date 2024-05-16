@@ -1,27 +1,38 @@
-import { useToggle } from "../../hooks/useToggle";
+
 import SearchAuthor from "./SearchAuthor";
 import SearchTitle from "./SearchTitle";
-import searchTitle from "../../Assets/search-book.png";
+import searchTitleImg from "../../Assets/search-book.png";
 import searchTitleGrey from "../../Assets/search-book-grey.png";
-import searchWriter from "../../Assets/search-writer.png";
+import searchAuthorImg from "../../Assets/search-writer.png";
+import SearchAuthorGrey from "../../Assets/search-author-grey.png";
+import { useState } from "react";
 
 const Home = () => {
-  const { toggle, toggleState } = useToggle();  
+  const [searchTitle, setSearchTitle] = useState(true);
 
   return (
     <>
       <section className=" mt-5">
-        <button className=" ml-10 mr-10 p-3" onClick={toggleState}>
-          <img src={searchTitle} alt="" />
+        <button className=" ml-10 mr-10 p-3" onClick={() => setSearchTitle(true)}>
+          {searchTitle ? 
+          <img src={searchTitleImg} alt="" />
+          :
+          <img src={searchTitleGrey} alt="" />
+        }
           Search for Book Title
         </button>
-        <button className=" ml-10 mr-10 p-3" onClick={toggleState}>
-          <img src={searchWriter} alt="" />
+        <button className=" ml-10 mr-10 p-3" onClick={() => setSearchTitle(false)}>
+          {searchTitle ?
+          <img src={SearchAuthorGrey} alt="" />
+          :
+          <img src={searchAuthorImg} alt="" />
+        }
           Search for an Author
         </button>
       </section>
       <article className="p-1.5 ml-10">
-        {toggle ? <SearchAuthor /> : <SearchTitle />}
+        {searchTitle ? <SearchTitle /> : <SearchAuthor/>}
+       
       </article>
     </>
   );
