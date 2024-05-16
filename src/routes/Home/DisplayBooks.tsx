@@ -66,20 +66,48 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
         {docs.map((book: Book) => (
           <DisplayDataCard key={book.key}>
             {!hideBookInfo[book.key] && (
-              <section className="book_details">
+              <section className="book_details flex flex-col">
                 <img
                   className="w-full h-52 object-contain object-center"
                   src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
                   alt=""
                 />
-                <p>{book.title}</p>
+                <p className="mt-5">{book.title}</p>
                 <p>{book.author_name}</p>
                 <p>{book.first_publish_year}</p>
-                {!isFav[book.key] ? (
+                <section className=" self-baseline">
+                  {!isFav[book.key] ? (
+                    <button
+                      className="my-5 px-5 py-2 bg-pink-300 rounded-lg hover:bg-purple-300"
+                      onClick={() =>
+                        addFavouriteBook(
+                          book.key,
+                          book.title,
+                          book.author_name,
+                          book.first_publish_year,
+                          book.cover_i
+                        )
+                      }
+                    >
+                      <GoHeart className="text-3xl" />
+                    </button>
+                  ) : (
+                    <button
+                      className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+                      onClick={() => removeFavouriteBook(book.key)}
+                    >
+                      <GoHeartFill className="text-3xl" />
+                    </button>
+                  )}
+
                   <button
-                    className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+                    className={
+                      isRead[book.key]
+                        ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400"
+                        : "my-5 px-5 py-2 bg-pink-400 rounded-lg hover:bg-purple-300 hover:font-bold"
+                    }
                     onClick={() =>
-                      addFavouriteBook(
+                      addRead(
                         book.key,
                         book.title,
                         book.author_name,
@@ -88,39 +116,13 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                       )
                     }
                   >
-                    <GoHeart className="text-3xl" />
+                    {isRead[book.key] ? (
+                      <p>Added to my Read Books</p>
+                    ) : (
+                      <p>Add to my Read Books</p>
+                    )}
                   </button>
-                ) : (
-                  <button
-                    className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
-                    onClick={() => removeFavouriteBook(book.key)}
-                  >
-                    <GoHeartFill className="text-3xl" />
-                  </button>
-                )}
-
-                <button
-                  className={
-                    isRead[book.key]
-                      ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400"
-                      : "my-5 px-5 py-2 bg-pink-400 rounded-lg"
-                  }
-                  onClick={() =>
-                    addRead(
-                      book.key,
-                      book.title,
-                      book.author_name,
-                      book.first_publish_year,
-                      book.cover_i
-                    )
-                  }
-                >
-                  {isRead[book.key] ? (
-                    <p>Added to my Read Books</p>
-                  ) : (
-                    <p>Add to my Read Books</p>
-                  )}
-                </button>
+                </section>
               </section>
             )}
             {reviewFormVisibility && selectedBook?.key === book.key && (

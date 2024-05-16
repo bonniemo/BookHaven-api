@@ -35,7 +35,7 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {
           alt="Author Photo"
           className="w-full h-52 object-contain object-center rounded mb-4"
         />
-          <p>{author.name}</p>
+          <p className="mt-5">{author.name}</p>
           <p>{author.key}</p>
           <p>Born: {author.birth_date}</p>
           <p>Top work: {author.top_work}</p>
