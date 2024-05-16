@@ -4,31 +4,25 @@ import { useSearch } from "../../hooks/useSearch";
 import { Book } from "../../types/Types";
 import DisplayBooks from "./DisplayBooks";
 
-
 const SearchTitle = () => {
-    const baseUrl = "https://openlibrary.org/search.json?title=";
-    const searchInput = useFormInput("");
-    const { handleClick, searchUrl } = useSearch(baseUrl, searchInput.value);
+  const baseUrl = "https://openlibrary.org/search.json?title=";
+  const searchInput = useFormInput("");
+  const { handleClick, searchUrl } = useSearch(baseUrl, searchInput.value);
   return (
-    <>
-        <label className="mx-1.5" htmlFor="search">
-          "Type the title to search for a Book"
-        </label>
-        <input
-          className="px-1.5 mx-1.5 rounded-md p-1"
-          type="text"
-          placeholder="Title"
-          {...searchInput}
-        />
-        <button className="px-1 border border-black" onClick={handleClick}>
-          Search
-        </button>
-        <FetchData<Book>
-        componentProp={ DisplayBooks }
-        url={searchUrl}
-      /> 
-    </>
-  )
-}
+    <>      
+      <input
+        className="my-5 px-5 py-2 w-80 border-l-2 border-t-2 border-b-2 border-black"
+        type="text"
+        placeholder="Title"
+        {...searchInput}
+      />
+      <button className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2" onClick={handleClick}>
+        Search
+      </button>
 
-export default SearchTitle
+      <FetchData<Book> componentProp={DisplayBooks} url={searchUrl} />
+    </>
+  );
+};
+
+export default SearchTitle;

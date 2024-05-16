@@ -13,7 +13,7 @@ const FavouriteBooks = () => {
     });
   };
   return (
-    <DisplayDataCardContainer>      
+    <DisplayDataCardContainer>
       {state.favouriteBooks.map((book, index) => (
         <DisplayDataCard key={index}>
           <img
@@ -24,7 +24,12 @@ const FavouriteBooks = () => {
           <p>{book.title}</p>
           <p>{book.author_name}</p>
           <p>{book.first_publish_year}</p>
-          <button onClick={() => removeFav(book.key)}>delete</button>
+          <button
+            className="my-5 px-5 py-2 bg-red-400 rounded-lg"
+            onClick={() => removeFav(book.key)}
+          >
+            delete
+          </button>
         </DisplayDataCard>
       ))}
     </DisplayDataCardContainer>

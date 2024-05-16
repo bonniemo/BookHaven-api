@@ -9,9 +9,12 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   const docs = data.docs;
   const { dispatch } = useContext(GlobalContext);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [reviewFormVisibility, setReviewFormVisibility] = useState<boolean>(false);
-  const [hideBookInfo, setHideBookInfo] = useState<{ [key: string] : boolean }>({});
-  const [isRead, setIsRead] = useState<{ [key: string] : boolean}>({});   
+  const [reviewFormVisibility, setReviewFormVisibility] =
+    useState<boolean>(false);
+  const [hideBookInfo, setHideBookInfo] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+  const [isRead, setIsRead] = useState<{ [key: string]: boolean }>({});
 
   const addFavouriteBook = (
     key: string,
@@ -40,9 +43,9 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     cover_i: string
   ) => {
     setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
-    setHideBookInfo((prevState) => ({...prevState, [key]: true}))
+    setHideBookInfo((prevState) => ({ ...prevState, [key]: true }));
     setReviewFormVisibility(true);
-    setIsRead((prevState) => ({...prevState, [key]: true}))
+    setIsRead((prevState) => ({ ...prevState, [key]: true }));
   };
 
   return (
@@ -61,6 +64,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                 <p>{book.author_name}</p>
                 <p>{book.first_publish_year}</p>
                 <button
+                  className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
                   onClick={() =>
                     addFavouriteBook(
                       book.key,
@@ -74,6 +78,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                   Add Favourite
                 </button>
                 <button
+                  className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
                   onClick={() =>
                     addRead(
                       book.key,
@@ -84,7 +89,11 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                     )
                   }
                 >
-                  {isRead[book.key] ? "Added to my Read Books" : "Add to my Read Books"}
+                  {isRead[book.key] ? (
+                    <p className="">Added to my Read Books</p>
+                  ) : (
+                    <p>Add to my Read Books</p>
+                  )}
                 </button>
               </section>
             )}

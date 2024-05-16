@@ -9,17 +9,17 @@ const SearchAuthor = () => {
   const searchInput = useFormInput("");
   const { handleClick, searchUrl } = useSearch(baseUrl, searchInput.value);
   return (
-    <>
-      <label className="mx-1.5" htmlFor="search">
-        "Type the name to search for an Author"
-      </label>
+    <>      
       <input
-        className="px-1.5 mx-1.5 rounded-md p-1"
+        className="my-5 px-5 py-2 border-l-2 border-t-2 border-b-2 border-black"
         type="text"
         placeholder="Author"
         {...searchInput}
       />
-      <button className="px-1 border border-black" onClick={handleClick}>
+      <button
+        className="my-5 px-5 py-2 w-80 bg-pink-300 border-black border-t-2 border-b-2 border-r-2"
+        onClick={handleClick}
+      >
         Search
       </button>
       <FetchData<Author> componentProp={DisplayAuthor} url={searchUrl} />

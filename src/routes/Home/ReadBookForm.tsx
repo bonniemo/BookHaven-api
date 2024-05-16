@@ -7,8 +7,10 @@ type ReadBookProps = {
   title: string;
   author_name: string[];
   cover_i: string;
-  setReviewFormVisibility: React.Dispatch<React.SetStateAction<boolean>>
-  setHideBookInfo: React.Dispatch<React.SetStateAction<{[key: string]: boolean}>>
+  setReviewFormVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  setHideBookInfo: React.Dispatch<
+    React.SetStateAction<{ [key: string]: boolean }>
+  >;
 };
 
 const ReadBookForm = ({
@@ -17,7 +19,7 @@ const ReadBookForm = ({
   author_name,
   cover_i,
   setReviewFormVisibility,
-  setHideBookInfo
+  setHideBookInfo,
 }: ReadBookProps) => {
   const { dispatch } = useContext(GlobalContext);
 
@@ -38,11 +40,11 @@ const ReadBookForm = ({
         userReview: userReview.value,
         userNumPages: userNumPages.value,
       },
-    }); 
-    setReviewFormVisibility(false);  
-    setHideBookInfo((prevState) => ({...prevState, [dataKey]: false}))
+    });
+    setReviewFormVisibility(false);
+    setHideBookInfo((prevState) => ({ ...prevState, [dataKey]: false }));
   };
-  
+
   return (
     <>
       <article className="w-full h-full">
@@ -52,7 +54,9 @@ const ReadBookForm = ({
           alt=""
         />
 
-        <p>{title} by {author_name}</p>
+        <p>
+          {title} by {author_name}
+        </p>
         <form className="flex flex-col" onSubmit={handleSubmitRead}>
           <>
             <label htmlFor="userRating ">Rating</label>
@@ -66,7 +70,12 @@ const ReadBookForm = ({
             <label htmlFor="userNumPages">Number of pages</label>
             <input type="number" {...userNumPages} id="userNumPages" />
           </>
-          <button type="submit">Add to my read Books</button>
+          <button
+            className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+            type="submit"
+          >
+            Submit
+          </button>
         </form>
       </article>
     </>

@@ -25,7 +25,7 @@ const ReadBooks = () => {
             <p>My rating: {book.userRating}</p>
             <p>My review: {book.userReview}</p>
             <p>Number of pages: {book.userNumPages}</p>
-            <button onClick={() => deleteRead(book.dataKey)}>Delete</button>
+            <button className="my-5 px-5 py-2 bg-red-400 rounded-lg" onClick={() => deleteRead(book.dataKey)}>Delete</button>
       </DisplayDataCard>
     ))}
     </DisplayDataCardContainer>
