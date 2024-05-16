@@ -10,7 +10,7 @@ import BookCorner from "./routes/BookCorner/BookCorner";
 import FavouriteBooks from "./routes/BookCorner/FavouriteBooks";
 import FavouriteAuthors from "./routes/BookCorner/FavouriteAuthors";
 import ReadBooks from "./routes/BookCorner/ReadBooks";
-import AggregatedData from "./routes/BookCorner/AggregatedData";
+import ReadingStatistics from "./routes/BookCorner/ReadingStatistics";
 
 
 const router = createBrowserRouter([
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
           { path: "/BookCorner", element: <FavouriteBooks /> },
           { path: "/BookCorner/FavouriteAuthors", element: <FavouriteAuthors /> },
           { path: "/BookCorner/ReadBooks", element: <ReadBooks /> },
-          { path: "/BookCorner/AggregatedData", element: <AggregatedData /> },
+          { path: "/BookCorner/ReadingStatistics", element: <ReadingStatistics /> },
         ],
       },
     ],

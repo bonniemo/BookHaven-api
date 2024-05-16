@@ -5,7 +5,7 @@ export const useSearch = (baseUrl: string, searchInput: string) => {
 
   const handleClick = () => {
     const formatedInput = searchInput.replace(/ /g, "+");
-    const searchUrl = `${baseUrl}${formatedInput}&limit=5&offset=3`;
+    const searchUrl = `${baseUrl}${formatedInput}&limit=20`;
     setSearchUrl(searchUrl);
   };
   return { handleClick, searchUrl };

@@ -28,7 +28,7 @@ const BookCorner = () => {
             </NavLink>
           </li>
           <li className="">
-            <NavLink className="" to="/BookCorner/AggregatedData">
+            <NavLink className="" to="/BookCorner/ReadingStatistics">
               <img src={readingStats} className="mx-2" />
               My Reading <span className="block">Statistics</span>
             </NavLink>
