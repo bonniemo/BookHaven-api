@@ -7,28 +7,28 @@ import readingStats from "../../Assets/analytics.png";
 const BookCorner = () => {
   return (
     <article className="flex row-auto">
-      <nav className=" border-r-4 border-stone-900 flex p-10">
+      <nav className=" min-w-max border-r-4 border-stone-900 flex p-10">
         <ul className="flex flex-col gap-8">
-          <li className="">
-            <NavLink className="" to="/BookCorner">
+          <li>
+            <NavLink className="hover:font-bold" to="/BookCorner">
               <img src={fav} className="mx-2" />
               My Favourite <span className="block">Books</span>
             </NavLink>
           </li>
-          <li className="">
-            <NavLink className="" to="/BookCorner/FavouriteAuthors">
+          <li>
+            <NavLink className="hover:font-bold" to="/BookCorner/FavouriteAuthors">
               <img src={author} className="mx-2" />
               My Favourite <span className="block">Authors</span>
             </NavLink>
           </li>
-          <li className="">
-            <NavLink className="" to="/BookCorner/ReadBooks">
+          <li>
+            <NavLink className="hover:font-bold" to="/BookCorner/ReadBooks">
               <img src={readingHistory} className="mx-2" />
               My Reading <span className="block">History</span>
             </NavLink>
           </li>
-          <li className="">
-            <NavLink className="" to="/BookCorner/ReadingStatistics">
+          <li>
+            <NavLink className="hover:font-bold" to="/BookCorner/ReadingStatistics">
               <img src={readingStats} className="mx-2" />
               My Reading <span className="block">Statistics</span>
             </NavLink>
