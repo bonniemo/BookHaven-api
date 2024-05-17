@@ -29,7 +29,7 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {
   return (    
     <DisplayDataCardContainer>      
       {docs.map((author) => (
-        <DisplayDataCard key={author.key}>          
+        <article key={author.key}>          
            <img
           src={`https://covers.openlibrary.org/a/olid/${author.key}-L.jpg`}
           alt="Author Photo"
@@ -58,7 +58,7 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {
           >
             Add Fav
           </button>
-        </DisplayDataCard>
+        </article>
       ))}
     </DisplayDataCardContainer>
   );
