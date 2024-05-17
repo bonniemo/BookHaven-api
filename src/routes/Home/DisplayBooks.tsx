@@ -64,7 +64,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     <>
       <DisplayDataCardContainer>
         {docs.map((book: Book) => (
-          <DisplayDataCard key={book.key}>
+          <article key={book.key}>
             {!hideBookInfo[book.key] && (
               <section className="book_details flex flex-col">
                 <img
@@ -135,7 +135,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                 setHideBookInfo={setHideBookInfo}
               />
             )}
-          </DisplayDataCard>
+          </article>
         ))}
       </DisplayDataCardContainer>
     </>

@@ -5,6 +5,13 @@ export type Book = {
   author_name: string[];
   cover_i: string;
 };
+export type DisplayDataCardProps = {
+  imgUrl: string;
+  onDelete: () => void;
+  title: string;
+  subTitle: string;
+  otherInfo: React.ReactNode;
+};
 
 export type DisplayBookProps = {
   data: {
@@ -17,7 +24,7 @@ export type Author = {
   name: string;
   birth_date: string;
   top_work: string;
-  top_subjects: string[];  
+  top_subjects: string[];
 };
 
 export type DisplayAuthorProps = {
@@ -38,17 +45,17 @@ export type ChildrenProp = {
 
 export type DisplayDataCards = ChildrenProp & {
   dataKey: string;
-}
+};
 
 export type ReadBook = {
   dataKey: string;
-  title: string;  
+  title: string;
   author_name: string[];
-  cover_i: string;  
+  cover_i: string;
   userRating: string;
   userReview: string;
   userNumPages: string;
-}
+};
 
 export type Action =
   | { type: "ADD_FAV_BOOK"; payload: Book }
@@ -56,4 +63,4 @@ export type Action =
   | { type: "ADD_FAV_AUTHOR"; payload: Author }
   | { type: "REMOVE_FAV_AUTHOR"; payload: string }
   | { type: "ADD_READ_BOOK"; payload: ReadBook }
-  | { type: "REMOVE_READ_BOOK"; payload: string }
+  | { type: "REMOVE_READ_BOOK"; payload: string };
