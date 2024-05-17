@@ -5,25 +5,34 @@ import DisplayDataCardContainer from "../../components/DisplayDataCardContainer"
 import ReadBookForm from "./ReadBookForm";
 import { GoHeartFill } from "react-icons/go";
 import { GoHeart } from "react-icons/go";
-import { useGlobalDispatch } from "../../hooks/useGlobalDispatch";
 import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
 import {
   ifBookIsFavouriteUtil,
-  toggleFavouriteUtil,
+  ifBookIsReadUtil,
+  toggleFavouriteUtil, 
 } from "../../utils/bookUtils";
+import { useGlobalDispatchRemove } from "../../hooks/useGlobalDispatchRemove";
 
 const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   const docs = data.docs;
   const { state } = useContext(GlobalContext);
-  const removeFavouriteBook = useGlobalDispatch("REMOVE_FAV_BOOK");
-  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
+  const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
+  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK"); 
 
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [reviewFormVisibility, setReviewFormVisibility] =
     useState<boolean>(false);
-  const [hideBookInfo, setHideBookInfo] = useState<{ [key: string]: boolean }>(
-    {}
-  );
+  
+  const openReviewForm = (
+    key: string,
+    title: string,
+    author_name: string[],
+    first_publish_year: number,
+    cover_i: string
+  ) => {
+    setSelectedBook({ key, title, author_name, cover_i, first_publish_year });    
+    setReviewFormVisibility(true);    
+  };
 
   const ifBookIsFavourite = (bookKey: string) =>
     ifBookIsFavouriteUtil(bookKey, state.favouriteBooks);
@@ -43,12 +52,15 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
     );
   };
 
+  const ifBookisRead = (bookKey: string) =>
+    ifBookIsReadUtil(bookKey, state.readBooks);  
+
   return (
     <>
       <DisplayDataCardContainer>
         {docs.map((book: Book) => (
           <article key={book.key}>
-            {!hideBookInfo[book.key] && (
+            {(!reviewFormVisibility || selectedBook?.key !== book.key) && (
               <section className="book_details flex flex-col">
                 <img
                   className="w-full h-52 object-contain object-center"
@@ -90,6 +102,28 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                       <GoHeart className="text-3xl" />
                     </button>
                   )}
+                  <button
+                    className={
+                      ifBookisRead(book.key)
+                        ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400"
+                        : "my-5 px-5 py-2 bg-pink-400 rounded-lg hover:bg-purple-300 hover:font-bold"
+                    }
+                    onClick={() =>
+                      openReviewForm(
+                        book.key,
+                        book.title,
+                        book.author_name,
+                        book.first_publish_year,
+                        book.cover_i
+                      )
+                    }
+                  >
+                    {ifBookisRead(book.key) ? (
+                      <p>Added to my Read Books</p>
+                    ) : (
+                      <p>Add to my Read Books</p>
+                    )}
+                  </button>
                 </section>
               </section>
             )}
@@ -99,8 +133,8 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                 title={selectedBook.title}
                 author_name={selectedBook.author_name}
                 cover_i={selectedBook.cover_i}
-                setReviewFormVisibility={setReviewFormVisibility}
-                setHideBookInfo={setHideBookInfo}
+                first_publish_year={selectedBook.first_publish_year}                
+                setReviewFormVisibility={setReviewFormVisibility}                
               />
             )}
           </article>

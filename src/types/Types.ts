@@ -4,9 +4,9 @@ export type Book = {
   first_publish_year: number;
   author_name: string[];
   cover_i: string;
-  userRating?: string;
-  userReview?: string;
-  userNumPages?: string;
+  userRating?: string | undefined;
+  userReview?: string | undefined;
+  userNumPages?: string | undefined;
 };
 
 export type DisplayDataCardProps = {
@@ -21,6 +21,15 @@ export type DisplayBookProps = {
   data: {
     docs: Book[];
   };
+};
+
+export type ReadBookProps = {
+  dataKey: string;
+  title: string;
+  author_name: string[];
+  cover_i: string;
+  first_publish_year: number;
+  setReviewFormVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type Author = {
