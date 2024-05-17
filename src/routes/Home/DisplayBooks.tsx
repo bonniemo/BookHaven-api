@@ -1,63 +1,46 @@
 import { useContext, useState } from "react";
 import { DisplayBookProps, Book } from "../../types/Types";
 import { GlobalContext } from "../../state/GlobalStateContext";
-import DisplayDataCard from "../../components/DisplayDataCard";
 import DisplayDataCardContainer from "../../components/DisplayDataCardContainer";
 import ReadBookForm from "./ReadBookForm";
 import { GoHeartFill } from "react-icons/go";
 import { GoHeart } from "react-icons/go";
+import { useGlobalDispatch } from "../../hooks/useGlobalDispatch";
+import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
+import {
+  ifBookIsFavouriteUtil,
+  toggleFavouriteUtil,
+} from "../../utils/bookUtils";
 
 const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   const docs = data.docs;
-  const { dispatch } = useContext(GlobalContext);
+  const { state } = useContext(GlobalContext);
+  const removeFavouriteBook = useGlobalDispatch("REMOVE_FAV_BOOK");
+  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
+
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [reviewFormVisibility, setReviewFormVisibility] =
     useState<boolean>(false);
   const [hideBookInfo, setHideBookInfo] = useState<{ [key: string]: boolean }>(
     {}
   );
-  const [isRead, setIsRead] = useState<{ [key: string]: boolean }>({});
-  const [isFav, setIsFav] = useState<{ [key: string]: boolean }>({});
 
-  const addFavouriteBook = (
+  const ifBookIsFavourite = (bookKey: string) =>
+    ifBookIsFavouriteUtil(bookKey, state.favouriteBooks);
+
+  const toggleFavourite = (
     key: string,
     title: string,
     author_name: string[],
     first_publish_year: number,
     cover_i: string
   ) => {
-    dispatch({
-      type: "ADD_FAV_BOOK",
-      payload: {
-        key: key,
-        title: title,
-        author_name: author_name,
-        first_publish_year: first_publish_year,
-        cover_i: cover_i,
-      },
-    });
-    setIsFav((prevState) => ({ ...prevState, [key]: true }));
-  };
-
-  const removeFavouriteBook = (key: string) => {
-    dispatch({
-      type: "REMOVE_FAV_BOOK",
-      payload: key,
-    });
-    setIsFav((prevState) => ({ ...prevState, [key]: false }));
-  };
-
-  const addRead = (
-    key: string,
-    title: string,
-    author_name: string[],
-    first_publish_year: number,
-    cover_i: string
-  ) => {
-    setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
-    setHideBookInfo((prevState) => ({ ...prevState, [key]: true }));
-    setReviewFormVisibility(true);
-    setIsRead((prevState) => ({ ...prevState, [key]: true }));
+    toggleFavouriteUtil(
+      { key, title, author_name, first_publish_year, cover_i },
+      state.favouriteBooks,
+      addFavouriteBook,
+      removeFavouriteBook
+    );
   };
 
   return (
@@ -76,11 +59,26 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                 <p>{book.author_name}</p>
                 <p>{book.first_publish_year}</p>
                 <section className=" self-baseline">
-                  {!isFav[book.key] ? (
+                  {ifBookIsFavourite(book.key) ? (
+                    <button
+                      className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
+                      onClick={() =>
+                        toggleFavourite(
+                          book.key,
+                          book.title,
+                          book.author_name,
+                          book.first_publish_year,
+                          book.cover_i
+                        )
+                      }
+                    >
+                      <GoHeartFill className="text-3xl" />
+                    </button>
+                  ) : (
                     <button
                       className="my-5 px-5 py-2 bg-pink-300 rounded-lg hover:bg-purple-300"
                       onClick={() =>
-                        addFavouriteBook(
+                        toggleFavourite(
                           book.key,
                           book.title,
                           book.author_name,
@@ -91,37 +89,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
                     >
                       <GoHeart className="text-3xl" />
                     </button>
-                  ) : (
-                    <button
-                      className="my-5 px-5 py-2 bg-pink-300 rounded-lg"
-                      onClick={() => removeFavouriteBook(book.key)}
-                    >
-                      <GoHeartFill className="text-3xl" />
-                    </button>
                   )}
-
-                  <button
-                    className={
-                      isRead[book.key]
-                        ? "my-5 px-5 py-2 rounded-lg border-4 border-pink-400"
-                        : "my-5 px-5 py-2 bg-pink-400 rounded-lg hover:bg-purple-300 hover:font-bold"
-                    }
-                    onClick={() =>
-                      addRead(
-                        book.key,
-                        book.title,
-                        book.author_name,
-                        book.first_publish_year,
-                        book.cover_i
-                      )
-                    }
-                  >
-                    {isRead[book.key] ? (
-                      <p>Added to my Read Books</p>
-                    ) : (
-                      <p>Add to my Read Books</p>
-                    )}
-                  </button>
                 </section>
               </section>
             )}

@@ -9,8 +9,8 @@ const ReadingStatistics = () => {
     numOffFavBooks,
     readPages,
     averageBookRating,
-    highestRatedBook,
-    longestReadBook,
+    // highestRatedBook,
+    // longestReadBook,
   } = useAggDataCalc();
   const mostReadAuthor = MostReadAuthor();
   return (
@@ -21,14 +21,14 @@ const ReadingStatistics = () => {
       <p>Number of favourite authors: {numOfFavAuthors}</p>
       <p>Number of favourite books: {numOffFavBooks}</p>
       <p>Avreage rating: {Math.floor(averageBookRating)}</p>
-      <p>
+      {/* <p>
         Highest rated book: {highestRatedBook.title} by{" "}
         {highestRatedBook.author_name}, rated {highestRatedBook.userRating}
       </p>
       <p>
         Longest book read: {longestReadBook.title} by{" "}
         {longestReadBook.author_name}, {longestReadBook.userNumPages} pages
-      </p>
+      </p> */}
       {mostReadAuthor.length > 0 && (
         <p>
           {mostReadAuthor.map((author) => (
