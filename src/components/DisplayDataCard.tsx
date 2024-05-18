@@ -7,6 +7,9 @@ const DisplayDataCard: React.FC<DisplayDataCardProps> = ({
   title,
   subTitle,
   otherInfo,
+  userRating,
+  userReview,
+  userNumPages,
   onDelete,
   isFavourite = false,
   isRead = false,
@@ -23,6 +26,9 @@ const DisplayDataCard: React.FC<DisplayDataCardProps> = ({
       <h2>{title}</h2>
       <h3>{subTitle}</h3>
       {otherInfo}
+      <p>{userRating}</p>
+      <p>{userReview}</p>
+      <p>{userNumPages}</p>
       {onToggleFavourite && (
         <FavouriteToggleButton
           isFavourite={isFavourite}

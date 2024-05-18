@@ -1,7 +1,12 @@
 import DisplayBooks from "../../components/DisplayBooks";
 
 const ReadBooks = () => {
-  return <DisplayBooks read />;
+  return (
+    <>
+      <h1 className="mx-10 my-5 text-xl">My Reading History</h1>
+      <DisplayBooks read />;
+    </>
+  );
 };
 
 export default ReadBooks;

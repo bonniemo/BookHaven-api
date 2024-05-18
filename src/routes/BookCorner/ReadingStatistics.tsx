@@ -18,7 +18,9 @@ const ReadingStatistics = () => {
       <p>Number of read pages: {readPages}</p>
       <p>Number of favourite authors: {numOfFavAuthors}</p>
       <p>Number of favourite books: {numOffFavBooks}</p>
-      <p>Avreage rating: {averageBookRating}</p>
+      {!Number.isNaN(averageBookRating) && (
+        <p>Avreage rating: {Math.floor(averageBookRating)}</p>
+      )}
       {mostReadAuthor.length > 0 && (
         <p>
           {mostReadAuthor.map((author) => (

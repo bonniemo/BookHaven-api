@@ -1,6 +1,11 @@
 import DisplayAuthors from "../../components/DisplayAuthors";
 
 const FavouriteAuthors = () => {
-  return <DisplayAuthors favourites />;
+  return (
+    <>
+      <h1 className="mx-10 my-5 text-xl">My Favourite Authors</h1>
+      <DisplayAuthors favourites />;
+    </>
+  );
 };
 export default FavouriteAuthors;

@@ -1,7 +1,12 @@
 import DisplayBooks from "../../components/DisplayBooks";
 
 const FavouriteBooks = () => {
-  return <DisplayBooks favourites />;
+  return (
+    <>
+      <h1 className="mx-10 my-5 text-xl">My Favourite Books</h1>
+      <DisplayBooks favourites />;
+    </>
+  );
 };
 
 export default FavouriteBooks;

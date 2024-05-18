@@ -26,7 +26,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
 
   const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
   const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
-  const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK")
+  const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
 
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [reviewFormVisibility, setReviewFormVisibility] =
@@ -78,7 +78,14 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
                 imgUrl={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
                 title={book.title}
                 subTitle={book.author_name.join(", ")}
-                otherInfo={<p>{book.first_publish_year}</p>}
+                otherInfo={`First published: ${book.first_publish_year}`}
+                userRating={
+                  book.userRating && `Your Rating: ${book.userRating}`
+                }
+                userReview={
+                  book.userRating && `Your Review: ${book.userReview}`
+                }
+                userNumPages={book.userRating && `Pages: ${book.userNumPages}`}
                 isFavourite={ifBookIsFavourite(book.key)}
                 isRead={ifBookisRead(book.key)}
                 onToggleFavourite={() =>

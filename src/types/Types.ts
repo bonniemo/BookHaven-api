@@ -35,6 +35,9 @@ export type DisplayDataCardProps = {
   title: string;
   subTitle: string;
   otherInfo: React.ReactNode;
+  userRating?: string;
+  userReview?: string;
+  userNumPages?: string;
   onDelete?: () => void;
   isFavourite?: boolean;
   isRead?: boolean;
