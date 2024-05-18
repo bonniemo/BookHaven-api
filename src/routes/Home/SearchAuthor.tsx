@@ -2,7 +2,7 @@ import FetchData from "../../components/FetchData";
 import { useFormInput } from "../../hooks/useFormInput";
 import { useSearch } from "../../hooks/useSearch";
 import { Author } from "../../types/Types";
-import DisplayAuthor from "./DisplayAuthor";
+import DisplaySearchResultAuthor from "./DisplaySearchResultAuthor";
 
 const SearchAuthor = () => {
   const baseUrl = "https://openlibrary.org/search/authors.json?q=";
@@ -22,7 +22,7 @@ const SearchAuthor = () => {
       >
         Search
       </button>
-      <FetchData<Author> componentProp={DisplayAuthor} url={searchUrl} />
+      <FetchData<Author> componentProp={DisplaySearchResultAuthor} url={searchUrl} />
     </>
   );
 };

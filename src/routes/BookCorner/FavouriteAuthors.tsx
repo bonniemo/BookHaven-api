@@ -12,9 +12,9 @@ const FavouriteAuthors = () => {
     <>
       <h2 className="mx-10 my-5 text-2xl">My favourite Authors</h2>
       <DisplayDataCardContainer>
-        {state.favouriteAuthors.map((author, index) => (
+        {state.favouriteAuthors.map((author) => (
           <DisplayDataCard
-            key={index}
+            key={author.key}
             imgUrl={`https://covers.openlibrary.org/a/olid/${author.key}-L.jpg`}
             title={author.name}
             subTitle={`Born in: ${author.birth_date}`}
