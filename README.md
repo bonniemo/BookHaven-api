@@ -1,55 +1,60 @@
-Bookhaven
+# Bookhaven
 
-Description
+## Description
 
-Bookhaven is a web application designed for avid readers. It allows users to search for books, save their favorites, view their reading history, and track their reading statistics. The app retrieves book information from the Open Library API, providing a rich database for users to explore.
-Features
+**Bookhaven** is a web application designed for avid readers. It allows users to search for books and authors, save their favorites, view their reading history, and track their reading statistics. The app retrieves book and author information from the Open Library API, providing a rich database for users to explore.
 
-    Search for Books: Retrieve detailed book information from the Open Library API.
-    Save Favorite Books and Authors: Mark favorite books and authors for quick access.
-    BookCorner: View and manage saved favorites.
-    Reading History: Keep track of books you have read.
-    Reading Stats: View statistics such as the number of books read and the total number of pages read.
+## Features
 
-Technologies
+- **Search for Books:** Retrieve book information from the Open Library API.
+- **Search for Authors:** Retrieve author information from the Open Library API.
+- **Save Favorite Books and Authors:** Mark favorite books and authors for quick access.
+- **BookCorner:** View and manage saved favorites.
+- **Reading History:** Keep track of books you have read.
+- **Reading Stats:** View statistics such as the number of books read and the total number of pages read.
 
-    Vite
-    React
-    TypeScript
-    Tailwind CSS
+## Technologies
 
-Installation
-Prerequisites
+- **Vite**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
 
-    Node.js
-    npm or yarn
+## Installation
 
-Steps
+### Prerequisites
 
-    Clone the repository:
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Steps
+
+1. **Clone the repository:**
+    ```bash
     git clone <project-github-repo-url>
+    cd <project-directory>
+    ```
 
-cd <project-directory>
+2. **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-Install dependencies:
-   npm install
-   # or
-   yarn install
+3. **Start the development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
 
-Start the development server:
-npm run dev
-# or
-yarn dev
+4. **Open in browser:**
+    Visit `http://localhost:3000` to explore Bookhaven and its features.
 
-Open in browser:
-Visit http://localhost:3000 to explore Bookhaven and its features.
-
-Contact Information
+## Contact Information
 
 For any questions or suggestions, please contact:
 
-    Bonnie Möller    
-    GitHub: bonniemo
-
-
-
+- **Bonnie Möller**
+- **GitHub:** [bonniemo](https://github.com/bonniemo)
