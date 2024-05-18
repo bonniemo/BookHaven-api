@@ -29,14 +29,15 @@ const ReadBookForm = ({
     );
     setReviewFormVisibility(false);
   };
-  
+
   return (
     <>
-      <article className="w-full h-full">
-        <h2>Add to my Reading History</h2>
+      <article className="min-w-72 max-w-72 max-h-min px-5 pb-5 pt-2 rounded-lg border-8 border-stone-900 flex flex-col leading-relaxed">
+        <h2 className="self-center mb-2 text-lg font-bold">Add to my Reading History</h2>
         <img
+          className="w-full h-52 object-contain object-center rounded mb-4"
           src={`https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`}
-          alt=""
+          alt={`Book cover of ${title}`}
         />
         <p>
           {title} by {author_name}
@@ -44,15 +45,15 @@ const ReadBookForm = ({
         <form className="flex flex-col" onSubmit={handleSubmitRead}>
           <>
             <label htmlFor="userRating ">Rating</label>
-            <input type="number" {...userRating} id="userRating" />
+            <input className="border-2 border-stone-600 rounded-md" type="number" {...userRating} id="userRating" />
           </>
           <>
             <label htmlFor="userReview">Your Review</label>
-            <input type="text" {...userReview} id="userReview" />
+            <input className="border-2 border-stone-600 rounded-md" type="text" {...userReview} id="userReview" />
           </>
           <>
             <label htmlFor="userNumPages">Number of pages</label>
-            <input type="number" {...userNumPages} id="userNumPages" />
+            <input className="border-2 border-stone-600 rounded-md" type="number" {...userNumPages} id="userNumPages" />
           </>
           <button
             className="my-5 px-5 py-2 bg-pink-400 rounded-lg"

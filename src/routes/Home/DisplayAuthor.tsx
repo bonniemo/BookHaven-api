@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../state/GlobalStateContext";
 import { DisplayAuthorProps } from "../../types/Types";
-import DisplayDataCard from "../../components/DisplayDataCard";
 import DisplayDataCardContainer from "../../components/DisplayDataCardContainer";
 
 const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {

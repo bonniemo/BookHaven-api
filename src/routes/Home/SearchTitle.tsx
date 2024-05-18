@@ -11,13 +11,14 @@ const SearchTitle = () => {
   return (
     <>
       <input
-        className="my-5 px-5 py-2 w-80 border-l-2 border-t-2 border-b-2 border-black"
+        className="my-5 px-5 py-2 w-80 border-l-2 border-t-2 border-b-2 border-black rounded-l-md rounded-r-none;
+        border-bottom-right-radius: 0;"
         type="text"
         placeholder="Title"
         {...searchInput}
       />
       <button
-        className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2 hover:bg-purple-300"
+        className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2 rounded-r-md rounded-l-none hover:bg-purple-300"
         onClick={handleClick}
       >
         Search

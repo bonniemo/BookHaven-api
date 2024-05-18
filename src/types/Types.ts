@@ -1,3 +1,4 @@
+// Book Types
 export type Book = {
   key: string;
   title: string;
@@ -9,19 +10,28 @@ export type Book = {
   userNumPages?: string | undefined;
 };
 
-export type ReadBook = {
-  dataKey: string;
-  title: string;
-  first_publish_year: number;
-  author_name: string[];
-  cover_i: string;
-  userRating: string;
-  userReview: string;
-  userNumPages: string;
+// Author Types
+export type Author = {
+  key: string;
+  name: string;
+  birth_date: string;
+  top_work: string;
+  top_subjects: string[];
 };
 
+// Read Book Types
+export type ReadBookProps = {
+  dataKey: string;
+  title: string;
+  author_name: string[];
+  cover_i: string;
+  first_publish_year: number;
+  setReviewFormVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+// Display Card Types
 export type DisplayDataCardProps = {
-  imgUrl: string; 
+  imgUrl: string;
   title: string;
   subTitle: string;
   otherInfo: React.ReactNode;
@@ -32,27 +42,15 @@ export type DisplayDataCardProps = {
   onOpenReviewForm?: () => void;
 };
 
+export type DisplayDataCards = ChildrenProp & {
+  dataKey: string;
+};
+
+// Display Data Types
 export type DisplayBookProps = {
   data: {
     docs: Book[];
   };
-};
-
-export type ReadBookProps = {
-  dataKey: string;
-  title: string;
-  author_name: string[];
-  cover_i: string;
-  first_publish_year: number;
-  setReviewFormVisibility: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export type Author = {
-  key: string;
-  name: string;
-  birth_date: string;
-  top_work: string;
-  top_subjects: string[];
 };
 
 export type DisplayAuthorProps = {
@@ -61,20 +59,19 @@ export type DisplayAuthorProps = {
   };
 };
 
+// Children Prop Type
+export type ChildrenProp = {
+  children: React.ReactNode;
+};
+
+// State Types
 export type InitialStateTypes = {
   favouriteBooks: Book[];
   readBooks: Book[];
   favouriteAuthors: Author[];
 };
 
-export type ChildrenProp = {
-  children: React.ReactNode;
-};
-
-export type DisplayDataCards = ChildrenProp & {
-  dataKey: string;
-};
-
+// Action Types
 export type Action =
   | { type: "ADD_FAV_BOOK"; payload: Book }
   | { type: "REMOVE_FAV_BOOK"; payload: string }
