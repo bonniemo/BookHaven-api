@@ -17,15 +17,12 @@ const SearchAuthor = () => {
         {...searchInput}
       />
       <button
-        className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2 hover:bg-purple-300 hover:font-bold"
+        className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2 hover:bg-purple-400 hover:font-bold"
         onClick={handleClick}
       >
         Search
       </button>
-      <FetchData<Author>
-        componentProp={AuthorSearchResult}
-        url={searchUrl}
-      />
+      <FetchData<Author> componentProp={AuthorSearchResult} url={searchUrl} />
     </>
   );
 };

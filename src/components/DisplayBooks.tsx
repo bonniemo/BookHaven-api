@@ -12,16 +12,28 @@ import {
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
 import DisplayDataCard from "./DisplayDataCard";
 
-const DisplayBooks: React.FC<DisplayBookProps> = ({ data, favourites, read }) => {
+const DisplayBooks: React.FC<DisplayBookProps> = ({
+  data,
+  favourites,
+  read,
+}) => {
   const { state } = useContext(GlobalContext);
-  const books = favourites ? state.favouriteBooks : read ? state.readBooks : data?.docs || [];
+  const books = favourites
+    ? state.favouriteBooks
+    : read
+      ? state.readBooks
+      : data?.docs || [];
 
   const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
   const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
+  const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK")
 
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [reviewFormVisibility, setReviewFormVisibility] =
     useState<boolean>(false);
+
+  const ifBookisRead = (bookKey: string) =>
+    ifBookIsReadUtil(bookKey, state.readBooks);
 
   const openReviewForm = (
     key: string,
@@ -30,8 +42,12 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data, favourites, read }) =>
     first_publish_year: number,
     cover_i: string
   ) => {
-    setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
-    setReviewFormVisibility(true);
+    if (ifBookisRead(key)) {
+      removeReadBook(key);
+    } else {
+      setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
+      setReviewFormVisibility(true);
+    }
   };
 
   const ifBookIsFavourite = (bookKey: string) =>
@@ -51,9 +67,6 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data, favourites, read }) =>
       removeFavouriteBook
     );
   };
-
-  const ifBookisRead = (bookKey: string) =>
-    ifBookIsReadUtil(bookKey, state.readBooks);
 
   return (
     <>

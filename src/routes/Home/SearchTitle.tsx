@@ -18,7 +18,7 @@ const SearchTitle = () => {
         {...searchInput}
       />
       <button
-        className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2 rounded-r-md rounded-l-none hover:bg-purple-300"
+        className="my-5 px-5 py-2 bg-pink-300 border-black border-t-2 border-b-2 border-r-2 rounded-r-md rounded-l-none hover:bg-purple-400"
         onClick={handleClick}
       >
         Search

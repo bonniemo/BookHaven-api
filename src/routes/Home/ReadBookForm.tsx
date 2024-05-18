@@ -73,7 +73,7 @@ const ReadBookForm = ({
             />
           </>
           <button
-            className="my-5 px-5 py-2 bg-pink-400 rounded-lg"
+            className="my-5 px-5 py-2 bg-pink-400 rounded-lg hover:bg-purple-400 hover:font-bold"
             type="submit"
           >
             Submit
