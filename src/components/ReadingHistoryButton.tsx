@@ -16,7 +16,7 @@ const ReadingHistoryButton: React.FC<ReadingHistoryButtonProps> = ({
       }
       onClick={onOpenReviewForm}
     >
-        {isRead ? "Added to my Read Books" : "Add to my Read Books"}
+      {isRead ? "Added to my Read Books" : "Add to my Read Books"}
     </button>
   );
 };

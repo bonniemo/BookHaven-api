@@ -4,10 +4,13 @@ import DisplayDataCard from "../../components/DisplayDataCard";
 import DisplayDataCardContainer from "../../components/DisplayDataCardContainer";
 import { useGlobalDispatchRemove } from "../../hooks/useGlobalDispatchRemove";
 import { useGlobalDispatchAddAuthor } from "../../hooks/useGlobalDispatchAddAuthor";
-import { ifAuthorIsFavouriteUtil, toggleFavouriteAuthorUtil } from "../../utils/bookUtils";
+import {
+  ifAuthorIsFavouriteUtil,
+  toggleFavouriteAuthorUtil,
+} from "../../utils/bookUtils";
 
 const FavouriteAuthors = () => {
-  const { state } = useContext(GlobalContext);  
+  const { state } = useContext(GlobalContext);
   const addFavouriteAuthor = useGlobalDispatchAddAuthor("ADD_FAV_AUTHOR");
   const removeFavouriteAuthor = useGlobalDispatchRemove("REMOVE_FAV_AUTHOR");
 
@@ -41,22 +44,22 @@ const FavouriteAuthors = () => {
       <DisplayDataCardContainer>
         {state.favouriteAuthors.map((author) => (
           <DisplayDataCard
-          key={author.key}
-          imgUrl={`https://covers.openlibrary.org/a/olid/${author.key}-L.jpg`}
-          title={author.name}
-          subTitle={`Born in: ${author.birth_date}`}
-          otherInfo={<p>Top work: {author.top_work}</p>}
-          isFavourite={ifAuthorIsFavourite(author.key)}
-          onToggleFavourite={() =>
-            toggleFavouriteAuthor(
-              author.key,
-              author.name,
-              author.birth_date,
-              author.top_work,
-              author.top_subjects
-            )
-          }
-        />
+            key={author.key}
+            imgUrl={`https://covers.openlibrary.org/a/olid/${author.key}-L.jpg`}
+            title={author.name}
+            subTitle={`Born in: ${author.birth_date}`}
+            otherInfo={<p>Top work: {author.top_work}</p>}
+            isFavourite={ifAuthorIsFavourite(author.key)}
+            onToggleFavourite={() =>
+              toggleFavouriteAuthor(
+                author.key,
+                author.name,
+                author.birth_date,
+                author.top_work,
+                author.top_subjects
+              )
+            }
+          />
         ))}
       </DisplayDataCardContainer>
     </>

@@ -9,7 +9,7 @@ const SearchAuthor = () => {
   const searchInput = useFormInput("");
   const { handleClick, searchUrl } = useSearch(baseUrl, searchInput.value);
   return (
-    <>      
+    <>
       <input
         className="my-5 px-5 py-2 w-80 border-l-2 border-t-2 border-b-2 border-black"
         type="text"
@@ -22,7 +22,10 @@ const SearchAuthor = () => {
       >
         Search
       </button>
-      <FetchData<Author> componentProp={DisplaySearchResultAuthor} url={searchUrl} />
+      <FetchData<Author>
+        componentProp={DisplaySearchResultAuthor}
+        url={searchUrl}
+      />
     </>
   );
 };

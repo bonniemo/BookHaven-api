@@ -3,7 +3,9 @@ import { GlobalContext } from "../../state/GlobalStateContext";
 
 export const MostReadAuthor = () => {
   const { state } = useContext(GlobalContext);
-  const [mostReadAuthors, setMostReadAuthors] = useState<{author: string, numBooks: number}[]>([]);
+  const [mostReadAuthors, setMostReadAuthors] = useState<
+    { author: string; numBooks: number }[]
+  >([]);
 
   useEffect(() => {
     const readAuthors = state.readBooks.flatMap((book) => book.author_name);
@@ -15,14 +17,14 @@ export const MostReadAuthor = () => {
     });
 
     let maxCount = -1;
-    let maxAuthors: { author: string, numBooks: number }[] = [];
+    let maxAuthors: { author: string; numBooks: number }[] = [];
 
     authorCountMap.forEach((count, author) => {
       if (count > maxCount) {
         maxCount = count;
-        maxAuthors = [{author, numBooks: count}];
+        maxAuthors = [{ author, numBooks: count }];
       } else if (count === maxCount) {
-        maxAuthors.push({author, numBooks: count});
+        maxAuthors.push({ author, numBooks: count });
       }
     });
 

@@ -1,11 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "../state/GlobalStateContext";
-import {
-  calcuateAverage,
-  calculateTotal,
-  // findHighestRatedBook,
-  // findLongestReadBook,
-} from "../utils/Utils";
+import { calcuateAverage, calculateTotal } from "../utils/Utils";
 
 export const useAggDataCalc = () => {
   const { state } = useContext(GlobalContext);
@@ -18,8 +13,6 @@ export const useAggDataCalc = () => {
   const averageBookRating = calcuateAverage(
     state.readBooks.map((book) => Number(book.userRating))
   );
-  // const highestRatedBook = findHighestRatedBook(state.readBooks);
-  // const longestReadBook = findLongestReadBook(state.readBooks);
 
   return {
     readBooks,
@@ -27,7 +20,5 @@ export const useAggDataCalc = () => {
     numOffFavBooks,
     readPages,
     averageBookRating,
-    // highestRatedBook,
-    // longestReadBook,
   };
 };

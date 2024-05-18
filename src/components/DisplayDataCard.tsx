@@ -3,13 +3,13 @@ import FavouriteToggleButton from "./FavouriteToggleButton";
 import ReadingHistoryButton from "./ReadingHistoryButton";
 
 const DisplayDataCard: React.FC<DisplayDataCardProps> = ({
-  imgUrl,  
+  imgUrl,
   title,
   subTitle,
   otherInfo,
   onDelete,
   isFavourite = false,
-  isRead= false,
+  isRead = false,
   onToggleFavourite,
   onOpenReviewForm,
 }) => {
@@ -25,23 +25,23 @@ const DisplayDataCard: React.FC<DisplayDataCardProps> = ({
       {otherInfo}
       {onToggleFavourite && (
         <FavouriteToggleButton
-        isFavourite={isFavourite}
-        onToggleFavourite={onToggleFavourite}
+          isFavourite={isFavourite}
+          onToggleFavourite={onToggleFavourite}
         />
       )}
       {onOpenReviewForm && (
         <ReadingHistoryButton
-        isRead={isRead}
-        onOpenReviewForm={onOpenReviewForm}
+          isRead={isRead}
+          onOpenReviewForm={onOpenReviewForm}
         />
       )}
       {onDelete && (
         <button
-        className="my-5 px-5 py-2 bg-red-400 rounded-lg"
-        onClick={onDelete}
-      >
-        Delete
-      </button>
+          className="my-5 px-5 py-2 bg-red-400 rounded-lg"
+          onClick={onDelete}
+        >
+          Delete
+        </button>
       )}
     </article>
   );

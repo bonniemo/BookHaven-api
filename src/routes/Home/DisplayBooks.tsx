@@ -7,7 +7,7 @@ import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
 import {
   ifBookIsFavouriteUtil,
   ifBookIsReadUtil,
-  toggleFavouriteUtil,  
+  toggleFavouriteUtil,
 } from "../../utils/bookUtils";
 import { useGlobalDispatchRemove } from "../../hooks/useGlobalDispatchRemove";
 import DisplayDataCard from "../../components/DisplayDataCard";
@@ -16,7 +16,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   const docs = data.docs;
   const { state } = useContext(GlobalContext);
   const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
-  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");  
+  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
 
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [reviewFormVisibility, setReviewFormVisibility] =

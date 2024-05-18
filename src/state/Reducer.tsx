@@ -1,4 +1,3 @@
-
 import { Action, InitialStateTypes } from "../types/Types";
 
 export const reducer = (state: InitialStateTypes, action: Action) => {
@@ -6,7 +5,7 @@ export const reducer = (state: InitialStateTypes, action: Action) => {
     case "ADD_FAV_BOOK":
       return {
         ...state,
-        favouriteBooks: [...state.favouriteBooks, action.payload]
+        favouriteBooks: [...state.favouriteBooks, action.payload],
       };
     case "REMOVE_FAV_BOOK":
       return {
@@ -15,26 +14,30 @@ export const reducer = (state: InitialStateTypes, action: Action) => {
           (fav) => fav.key !== action.payload
         ),
       };
-      case "ADD_FAV_AUTHOR":
-        return {
-            ...state,
-            favouriteAuthors: [...state.favouriteAuthors, action.payload]
-        }
-        case "REMOVE_FAV_AUTHOR":
-            return {
-                ...state,
-                favouriteAuthors: state.favouriteAuthors.filter((fav) => fav.key !== action.payload)
-            }
-        case "ADD_READ_BOOK":
-          return {
-            ...state,
-            readBooks: [...state.readBooks, action.payload]
-          }
-        case "REMOVE_READ_BOOK":
-          return {
-            ...state,
-            readBooks: state.readBooks.filter((read) => read.key !== action.payload)
-          }
+    case "ADD_FAV_AUTHOR":
+      return {
+        ...state,
+        favouriteAuthors: [...state.favouriteAuthors, action.payload],
+      };
+    case "REMOVE_FAV_AUTHOR":
+      return {
+        ...state,
+        favouriteAuthors: state.favouriteAuthors.filter(
+          (fav) => fav.key !== action.payload
+        ),
+      };
+    case "ADD_READ_BOOK":
+      return {
+        ...state,
+        readBooks: [...state.readBooks, action.payload],
+      };
+    case "REMOVE_READ_BOOK":
+      return {
+        ...state,
+        readBooks: state.readBooks.filter(
+          (read) => read.key !== action.payload
+        ),
+      };
     default:
       return state;
   }
