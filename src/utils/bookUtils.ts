@@ -35,5 +35,3 @@ export const toggleFavouriteUtil = (
 export const ifBookIsReadUtil = (bookKey: string, readBooks: Book[]) => {
   return readBooks.some((readBook) => readBook.key === bookKey);
 };
-
-

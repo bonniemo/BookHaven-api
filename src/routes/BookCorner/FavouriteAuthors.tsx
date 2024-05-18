@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { GlobalContext } from "../../state/GlobalStateContext";
 import DisplayDataCard from "../../components/DisplayDataCard";
 import DisplayDataCardContainer from "../../components/DisplayDataCardContainer";
-import { useGlobalDispatch } from "../../hooks/useGlobalDispatch";
+import { useGlobalDispatchRemove } from "../../hooks/useGlobalDispatchRemove";
 
 const FavouriteAuthors = () => {
   const { state } = useContext(GlobalContext);
-  const removeFavouriteAuthor = useGlobalDispatch("REMOVE_FAV_AUTHOR");
+  const removeFavouriteAuthor = useGlobalDispatchRemove("REMOVE_FAV_AUTHOR");
 
   return (
     <>

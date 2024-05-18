@@ -9,12 +9,27 @@ export type Book = {
   userNumPages?: string | undefined;
 };
 
+export type ReadBook = {
+  dataKey: string;
+  title: string;
+  first_publish_year: number;
+  author_name: string[];
+  cover_i: string;
+  userRating: string;
+  userReview: string;
+  userNumPages: string;
+};
+
 export type DisplayDataCardProps = {
-  imgUrl: string;
-  onDelete?: () => void;
+  imgUrl: string; 
   title: string;
   subTitle: string;
   otherInfo: React.ReactNode;
+  onDelete?: () => void;
+  isFavourite?: boolean;
+  isRead?: boolean;
+  onToggleFavourite?: () => void;
+  onOpenReviewForm?: () => void;
 };
 
 export type DisplayBookProps = {

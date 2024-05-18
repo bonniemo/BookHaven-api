@@ -33,7 +33,7 @@ export const reducer = (state: InitialStateTypes, action: Action) => {
         case "REMOVE_READ_BOOK":
           return {
             ...state,
-            readBooks: state.readBooks.filter((read) => read.dataKey !== action.payload)
+            readBooks: state.readBooks.filter((read) => read.key !== action.payload)
           }
     default:
       return state;
