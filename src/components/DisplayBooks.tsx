@@ -1,20 +1,21 @@
 import { useContext, useState } from "react";
-import { DisplayBookProps, Book } from "../../types/Types";
-import { GlobalContext } from "../../state/GlobalStateContext";
-import DisplayDataCardContainer from "../../components/DisplayDataCardContainer";
-import ReadBookForm from "./ReadBookForm";
-import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
+import { DisplayBookProps, Book } from "../types/Types";
+import { GlobalContext } from "../state/GlobalStateContext";
+import DisplayDataCardContainer from "./DisplayDataCardContainer";
+import ReadBookForm from "../routes/Home/ReadBookForm";
+import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
   ifBookIsFavouriteUtil,
   ifBookIsReadUtil,
   toggleFavouriteUtil,
-} from "../../utils/bookUtils";
-import { useGlobalDispatchRemove } from "../../hooks/useGlobalDispatchRemove";
-import DisplayDataCard from "../../components/DisplayDataCard";
+} from "../utils/bookUtils";
+import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
+import DisplayDataCard from "./DisplayDataCard";
 
-const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
-  const docs = data.docs;
+const DisplayBooks: React.FC<DisplayBookProps> = ({ data, favourites, read }) => {
   const { state } = useContext(GlobalContext);
+  const books = favourites ? state.favouriteBooks : read ? state.readBooks : data?.docs || [];
+
   const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
   const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
 
@@ -57,7 +58,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({ data }) => {
   return (
     <>
       <DisplayDataCardContainer>
-        {docs.map((book: Book) => (
+        {books.map((book: Book) => (
           <article key={book.key}>
             {(!reviewFormVisibility || selectedBook?.key !== book.key) && (
               <DisplayDataCard

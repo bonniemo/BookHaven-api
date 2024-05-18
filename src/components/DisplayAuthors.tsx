@@ -3,14 +3,16 @@ import { useGlobalDispatchAddAuthor } from "../hooks/useGlobalDispatchAddAuthor"
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
 import { GlobalContext } from "../state/GlobalStateContext";
 import { DisplayAuthorProps } from "../types/Types";
-import { ifAuthorIsFavouriteUtil, toggleFavouriteAuthorUtil } from "../utils/bookUtils";
+import {
+  ifAuthorIsFavouriteUtil,
+  toggleFavouriteAuthorUtil,
+} from "../utils/bookUtils";
 import DisplayDataCard from "./DisplayDataCard";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
 
-
 const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
-    const { state } = useContext(GlobalContext);
-    const authors = favourites ? state.favouriteAuthors : data?.docs || []; 
+  const { state } = useContext(GlobalContext);
+  const authors = favourites ? state.favouriteAuthors : data?.docs || [];
 
   const addFavouriteAuthor = useGlobalDispatchAddAuthor("ADD_FAV_AUTHOR");
   const removeFavouriteAuthor = useGlobalDispatchRemove("REMOVE_FAV_AUTHOR");

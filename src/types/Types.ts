@@ -48,6 +48,14 @@ export type DisplayDataCards = ChildrenProp & {
 
 // Display Data Types
 export type DisplayBookProps = {
+  data?: {
+    docs: Book[];
+  };
+  favourites?: boolean;
+  read?: boolean;
+};
+
+export type SearchBooksProps = {
   data: {
     docs: Book[];
   };

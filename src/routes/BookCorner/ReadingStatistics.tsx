@@ -1,5 +1,5 @@
 import React from "react";
-import { MostReadAuthor } from "./MostReadAuthor";
+import { MostReadAuthor } from "../../utils/MostReadAuthor";
 import { useAggDataCalc } from "../../hooks/useAggDataCalc";
 
 const ReadingStatistics = () => {

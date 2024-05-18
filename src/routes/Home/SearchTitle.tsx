@@ -2,7 +2,7 @@ import FetchData from "../../components/FetchData";
 import { useFormInput } from "../../hooks/useFormInput";
 import { useSearch } from "../../hooks/useSearch";
 import { Book } from "../../types/Types";
-import DisplayBooks from "./DisplayBooks";
+import TitleSearchResult from "./TitleSearchResult";
 
 const SearchTitle = () => {
   const baseUrl = "https://openlibrary.org/search.json?title=";
@@ -24,7 +24,7 @@ const SearchTitle = () => {
         Search
       </button>
 
-      <FetchData<Book> componentProp={DisplayBooks} url={searchUrl} />
+      <FetchData<Book> componentProp={TitleSearchResult} url={searchUrl} />
     </>
   );
 };
