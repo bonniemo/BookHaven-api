@@ -8,9 +8,9 @@ import DisplayDataCard from "./DisplayDataCard";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
 
 
-const DisplaySearchResultAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {
-  const docs = data.docs;
-  const { state } = useContext(GlobalContext);
+const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
+    const { state } = useContext(GlobalContext);
+    const authors = favourites ? state.favouriteAuthors : data?.docs || []; 
 
   const addFavouriteAuthor = useGlobalDispatchAddAuthor("ADD_FAV_AUTHOR");
   const removeFavouriteAuthor = useGlobalDispatchRemove("REMOVE_FAV_AUTHOR");
@@ -41,7 +41,7 @@ const DisplaySearchResultAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {
 
   return (
     <DisplayDataCardContainer>
-      {docs.map((author) => (
+      {authors.map((author) => (
         <DisplayDataCard
           key={author.key}
           imgUrl={`https://covers.openlibrary.org/a/olid/${author.key}-L.jpg`}
@@ -64,4 +64,4 @@ const DisplaySearchResultAuthor: React.FC<DisplayAuthorProps> = ({ data }) => {
   );
 };
 
-export default DisplaySearchResultAuthor;
+export default DisplayAuthor;

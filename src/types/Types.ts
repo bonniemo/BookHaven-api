@@ -53,10 +53,17 @@ export type DisplayBookProps = {
   };
 };
 
-export type DisplayAuthorProps = {
-  data: {
+export type SearchAuthorProps = {
+  data?: {
     docs: Author[];
   };
+}
+
+export type DisplayAuthorProps = {
+  data?: {
+    docs: Author[];
+  };
+  favourites?: boolean;
 };
 
 // Children Prop Type
