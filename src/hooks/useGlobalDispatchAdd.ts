@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { GlobalContext } from "../state/GlobalStateContext";
 
-export const useGlobalDispatchAdd = (actionType: "ADD_FAV_BOOK" | "ADD_READ_BOOK") => {
+// "ADD_FAV_BOOK" | "ADD_READ_BOOK"
+export const useGlobalDispatchAdd = (actionType: any) => {
   const { dispatch } = useContext(GlobalContext);
   return (
     key: string,
