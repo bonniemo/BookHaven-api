@@ -41,28 +41,39 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
     );
   };
 
+  const isEmptySearch = data?.docs.length === 0;
+  const isEmptyFavourites = favourites && state.favouriteAuthors.length === 0;
+
   return (
-    <DisplayDataCardContainer>
-      {authors.map((author) => (
-        <DisplayDataCard
-          key={author.key}
-          imgUrl={`https://covers.openlibrary.org/a/olid/${author.key}-L.jpg`}
-          title={author.name}
-          subTitle={`Born in: ${author.birth_date}`}
-          otherInfo={<p>Top work: {author.top_work}</p>}
-          isFavourite={ifAuthorIsFavourite(author.key)}
-          onToggleFavourite={() =>
-            toggleFavouriteAuthor(
-              author.key,
-              author.name,
-              author.birth_date,
-              author.top_work,
-              author.top_subjects
-            )
-          }
-        />
-      ))}
-    </DisplayDataCardContainer>
+    <>
+      {(isEmptySearch || isEmptyFavourites) && (
+        <section className="mx-10 my-5">
+          {isEmptySearch && "Sorry, no authors found"}
+          {isEmptyFavourites && "No favourite authors added yet."}
+        </section>
+      )}
+      <DisplayDataCardContainer>
+        {authors.map((author) => (
+          <DisplayDataCard
+            key={author.key}
+            imgUrl={`https://covers.openlibrary.org/a/olid/${author.key}-L.jpg`}
+            title={author.name}
+            subTitle={`Born in: ${author.birth_date}`}
+            otherInfo={<p>Top work: {author.top_work}</p>}
+            isFavourite={ifAuthorIsFavourite(author.key)}
+            onToggleFavourite={() =>
+              toggleFavouriteAuthor(
+                author.key,
+                author.name,
+                author.birth_date,
+                author.top_work,
+                author.top_subjects
+              )
+            }
+          />
+        ))}
+      </DisplayDataCardContainer>
+    </>
   );
 };
 
