@@ -68,8 +68,19 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
     );
   };
 
+  const isEmptySearch = data?.docs.length === 0;
+  const isEmptyFavourites = favourites && state.favouriteBooks.length === 0;
+  const isEmptyRead = read && state.readBooks.length === 0;
+
   return (
     <>
+      {(isEmptySearch || isEmptyFavourites || isEmptyRead) && (
+        <section className="mx-10 my-5">
+          {isEmptySearch && "Sorry, no books found"}
+          {isEmptyFavourites && "No favourite books added yet."}
+          {isEmptyRead && "No books added to Reading History yet."}
+        </section>
+      )}
       <DisplayDataCardContainer>
         {books.map((book: Book) => (
           <article key={book.key}>
