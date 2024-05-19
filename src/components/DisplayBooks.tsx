@@ -5,6 +5,7 @@ import DisplayDataCardContainer from "./DisplayDataCardContainer";
 import ReadBookForm from "../routes/Home/ReadBookForm";
 import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
+  getBookInfo,
   ifBookIsFavouriteUtil,
   ifBookIsReadUtil,
   toggleFavouriteBookUtil,
@@ -56,16 +57,11 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
   const ifBookIsFavourite = (bookKey: string) =>
     ifBookIsFavouriteUtil(bookKey, state.favouriteBooks);
 
-  const toggleFavourite = (
-    key: string,
-    title: string,
-    author_name: string[],
-    first_publish_year: number,
-    cover_i: string
-  ) => {
-    const isCurrentFavourite = ifBookIsFavourite(key);
+  const toggleFavourite = (book: Book) => {
+    const bookInfo = getBookInfo(book);
+    const isCurrentFavourite = ifBookIsFavourite(book.key);
     toggleFavouriteBookUtil(
-      { key, title, author_name, first_publish_year, cover_i },
+      bookInfo,
       state.favouriteBooks,
       addFavouriteBook,
       removeFavouriteBook
@@ -109,15 +105,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
                 userNumPages={book.userRating && `Pages: ${book.userNumPages}`}
                 isFavourite={ifBookIsFavourite(book.key)}
                 isRead={ifBookisRead(book.key)}
-                onToggleFavourite={() =>
-                  toggleFavourite(
-                    book.key,
-                    book.title,
-                    book.author_name,
-                    book.first_publish_year,
-                    book.cover_i
-                  )
-                }
+                onToggleFavourite={() => toggleFavourite(book)}
                 onOpenReviewForm={() =>
                   openReviewForm(
                     book.key,

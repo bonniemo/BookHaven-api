@@ -11,6 +11,11 @@ export const ifBookIsFavouriteUtil = (
   return favouriteBooks.some((favouriteBook) => favouriteBook.key === bookKey);
 };
 
+export const getBookInfo = (book: Book) => {
+  const { key, title, author_name, first_publish_year, cover_i } = book;
+  return { key, title, author_name, first_publish_year, cover_i }
+}
+
 export const toggleFavouriteBookUtil = (
   book: Book,
   favouriteBooks: Book[],
