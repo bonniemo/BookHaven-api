@@ -71,6 +71,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
       return;
     }
   };
+  
   const isEmptySearch = data?.docs.length === 0;
   const isEmptyFavourites = favourites && state.favouriteBooks.length === 0;
   const isEmptyRead = read && state.readBooks.length === 0;

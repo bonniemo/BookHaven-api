@@ -21,7 +21,7 @@ export type Author = {
   top_subjects: string[];
 };
 
-// Read Book Types
+// Read BookProps Types
 export type ReadBookProps = {
   dataKey: string;
   title: string;
