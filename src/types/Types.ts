@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 // Book Types
 export type Book = {
   key: string;
@@ -47,6 +49,21 @@ export type DisplayDataCardProps = {
 
 export type DisplayDataCards = ChildrenProp & {
   dataKey: string;
+};
+
+export type DisplayBooksCardProps = {
+  books: Book[];
+  openReviewForm: (
+    key: string,
+    title: string,
+    author_name: string[],
+    first_publish_year: number,
+    cover_i: string
+  ) => void;
+  toggleFavourite: (book: Book) => void;
+  setReviewFormVisibility: Dispatch<SetStateAction<boolean>>;
+  selectedBook: Book | null;
+  reviewFormVisibility: boolean;
 };
 
 // Display Data Types

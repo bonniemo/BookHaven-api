@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { DisplayBookProps, Book } from "../types/Types";
 import { GlobalContext } from "../state/GlobalStateContext";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
-import ReadBookForm from "../routes/Home/ReadBookForm";
 import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
   getBookInfo,
@@ -11,9 +10,9 @@ import {
   toggleFavouriteBookUtil,
 } from "../utils/bookUtils";
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
-import DisplayDataCard from "./DisplayDataCard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DisplayBooksCard from "./DisplayBooksCard";
 
 const DisplayBooks: React.FC<DisplayBookProps> = ({
   data,
@@ -72,7 +71,6 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
       return;
     }
   };
-
   const isEmptySearch = data?.docs.length === 0;
   const isEmptyFavourites = favourites && state.favouriteBooks.length === 0;
   const isEmptyRead = read && state.readBooks.length === 0;
@@ -88,47 +86,14 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
       )}
       <ToastContainer />
       <DisplayDataCardContainer>
-        {books.map((book: Book) => (
-          <article key={book.key}>
-            {(!reviewFormVisibility || selectedBook?.key !== book.key) && (
-              <DisplayDataCard
-                imgUrl={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
-                title={book.title}
-                subTitle={book.author_name.join(", ")}
-                otherInfo={`First published: ${book.first_publish_year}`}
-                userRating={
-                  book.userRating && `Your Rating: ${book.userRating}`
-                }
-                userReview={
-                  book.userRating && `Your Review: ${book.userReview}`
-                }
-                userNumPages={book.userRating && `Pages: ${book.userNumPages}`}
-                isFavourite={ifBookIsFavourite(book.key)}
-                isRead={ifBookisRead(book.key)}
-                onToggleFavourite={() => toggleFavourite(book)}
-                onOpenReviewForm={() =>
-                  openReviewForm(
-                    book.key,
-                    book.title,
-                    book.author_name,
-                    book.first_publish_year,
-                    book.cover_i
-                  )
-                }
-              />
-            )}
-            {reviewFormVisibility && selectedBook?.key === book.key && (
-              <ReadBookForm
-                dataKey={selectedBook.key}
-                title={selectedBook.title}
-                author_name={selectedBook.author_name}
-                cover_i={selectedBook.cover_i}
-                first_publish_year={selectedBook.first_publish_year}
-                setReviewFormVisibility={setReviewFormVisibility}
-              />
-            )}
-          </article>
-        ))}
+        <DisplayBooksCard
+          books={books}
+          openReviewForm={openReviewForm}
+          toggleFavourite={toggleFavourite}
+          setReviewFormVisibility={setReviewFormVisibility}
+          selectedBook={selectedBook}
+          reviewFormVisibility={reviewFormVisibility}
+        />
       </DisplayDataCardContainer>
     </>
   );
