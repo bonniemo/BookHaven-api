@@ -9,9 +9,8 @@
 - **Search for Books:** Retrieve book information from the Open Library API.
 - **Search for Authors:** Retrieve author information from the Open Library API.
 - **Save Favorite Books and Authors:** Mark favorite books and authors for quick access.
-- **BookCorner:** View and manage saved favorites.
+- **BookCorner:** View and manage saved favorites, read books and view reading statistics.
 - **Reading History:** Keep track of books you have read.
-- **Reading Stats:** View statistics such as the number of books read and the total number of pages read.
 
 ## Technologies
 
@@ -31,7 +30,7 @@
 
 1. **Clone the repository:**
     ```bash
-    git clone <project-github-repo-url>
+    git clone https://github.com/bonniemo/BookHaven-api.git
     cd <project-directory>
     ```
 
