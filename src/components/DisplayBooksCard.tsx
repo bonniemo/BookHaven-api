@@ -5,14 +5,14 @@ import { Book, DisplayBooksCardProps } from "../types/Types";
 import { ifBookIsFavouriteUtil, ifBookIsReadUtil } from "../utils/bookUtils";
 import DisplayDataCard from "./DisplayDataCard";
 
-const DisplayBooksCard = ({
+const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
   books,
   openReviewForm,
   toggleFavourite,
   setReviewFormVisibility,
   selectedBook,
   reviewFormVisibility,
-}: DisplayBooksCardProps) => {
+}) => {
   const { state } = useContext(GlobalContext);
 
   const ifBookIsFavourite = (bookKey: string) =>
