@@ -5,6 +5,7 @@ import searchTitleGrey from "../../Assets/search-book-grey.png";
 import searchAuthorImg from "../../Assets/search-writer.png";
 import SearchAuthorGrey from "../../Assets/search-author-grey.png";
 import { useState } from "react";
+import RandomAuthorQuote from "../../components/RandomAuthorQuote";
 
 const Home = () => {
   const [searchTitle, setSearchTitle] = useState(true);
@@ -38,6 +39,9 @@ const Home = () => {
       <article className="p-1.5 ml-10">
         {searchTitle ? <SearchTitle /> : <SearchAuthor />}
       </article>
+        <section className="">
+          <RandomAuthorQuote />
+        </section>
     </>
   );
 };

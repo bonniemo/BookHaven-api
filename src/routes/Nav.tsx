@@ -27,15 +27,6 @@ const Nav = () => {
               My Book Corner
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/"
-              className="flex flex-col items-center hover:font-bold"
-            >
-              <img src={iconSearch} className="w-8" />
-              Search
-            </NavLink>
-          </li>
         </ul>
       </nav>
       <Outlet />
