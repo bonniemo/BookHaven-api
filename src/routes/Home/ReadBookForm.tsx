@@ -15,7 +15,7 @@ const ReadBookForm = ({
   const userReview = useFormInput("");
   const userNumPages = useFormInput("");
 
-  const handleSubmitRead = (e: any) => {
+  const handleSubmitRead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addReadBook(
       dataKey,

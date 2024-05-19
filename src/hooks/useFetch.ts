@@ -25,8 +25,12 @@ export const useFetch = <T>(url: string): ApiResponse<T> => {
 
         const jsonData: T = await resp.json();
         setData(jsonData);
-      } catch (error: any) {
-        setError(error.message);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("Sorry, An unknown Error has occured.");
+        }
       } finally {
         setLoading(false);
       }
