@@ -7,10 +7,10 @@ const MostReadAuthor = () => {
   const mostReadAuthors = calculateMostReadAuthor(state.readBooks);
   return (
     <>
+      <p>Most Read Author:</p>
       {mostReadAuthors.map((author) => (
         <section key={author.author}>
           <p>
-            Most Read Author:
             {author.author}, {author.numBooks} books
           </p>
         </section>
