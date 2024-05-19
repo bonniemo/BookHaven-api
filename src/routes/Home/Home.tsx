@@ -39,9 +39,7 @@ const Home = () => {
       <article className="p-1.5 ml-10">
         {searchTitle ? <SearchTitle /> : <SearchAuthor />}
       </article>
-        <section className="">
-          <RandomAuthorQuote />
-        </section>
+      <RandomAuthorQuote />
     </>
   );
 };

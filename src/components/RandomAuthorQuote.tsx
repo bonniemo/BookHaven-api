@@ -24,11 +24,15 @@ const RandomAuthorQuote = () => {
     return <p>Error: {error}</p>;
   }
   return (
-    <section className="mt-5 p-10 flex flex-col justify-center">
-      <h1 className="mb-5 w-2/4 self-center text-4xl">"{data?.quote}"</h1>
-      <p className="self-center">
-        by {data?.author} in {data?.book}
-      </p>
+    <section className="mt-10 mb-20 flex flex-col justify-center items-center">
+      <section className="p-10 w-2/4 border-8 border-stone-900 bg-white flex flex-col justify-center align-middle">
+        <h1 className="mb-5 self-center text-center text-4xl">
+          "{data?.quote}"
+        </h1>
+        <p className="self-center">
+          by {data?.author} in {data?.book}
+        </p>
+      </section>
     </section>
   );
 };
