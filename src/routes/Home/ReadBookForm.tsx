@@ -46,7 +46,9 @@ const ReadBookForm = ({
         </p>
         <form className="flex flex-col" onSubmit={handleSubmitRead}>
           <>
-            <label htmlFor="userRating ">Rating between 1 and 10</label>
+            <label className=" mt-3" htmlFor="userRating ">
+              Rating between 1 and 10
+            </label>
             <input
               className="border-2 border-stone-600 rounded-md"
               type="number"
