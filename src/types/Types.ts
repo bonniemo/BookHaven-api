@@ -68,7 +68,7 @@ export type SearchAuthorProps = {
   data?: {
     docs: Author[];
   };
-}
+};
 
 export type DisplayAuthorProps = {
   data?: {
@@ -82,14 +82,13 @@ export type ChildrenProp = {
   children: React.ReactNode;
 };
 
-// State Types
+// Global State Types
 export type InitialStateTypes = {
   favouriteBooks: Book[];
   readBooks: Book[];
   favouriteAuthors: Author[];
 };
 
-// Action Types
 export type Action =
   | { type: "ADD_FAV_BOOK"; payload: Book }
   | { type: "REMOVE_FAV_BOOK"; payload: string }
