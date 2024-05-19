@@ -30,7 +30,7 @@
 
 1. **Clone the repository:**
     ```bash
-    git clone <project-github-repo-url>
+    git clone https://github.com/bonniemo/BookHaven-api.git
     cd <project-directory>
     ```
 
