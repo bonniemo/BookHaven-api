@@ -11,7 +11,7 @@ export const ifBookIsFavouriteUtil = (
   return favouriteBooks.some((favouriteBook) => favouriteBook.key === bookKey);
 };
 
-export const toggleFavouriteUtil = (
+export const toggleFavouriteBookUtil = (
   book: Book,
   favouriteBooks: Book[],
   addFavouriteBook: (

@@ -7,7 +7,7 @@ import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
   ifBookIsFavouriteUtil,
   ifBookIsReadUtil,
-  toggleFavouriteUtil,
+  toggleFavouriteBookUtil,
 } from "../utils/bookUtils";
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
 import DisplayDataCard from "./DisplayDataCard";
@@ -60,7 +60,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
     first_publish_year: number,
     cover_i: string
   ) => {
-    toggleFavouriteUtil(
+    toggleFavouriteBookUtil(
       { key, title, author_name, first_publish_year, cover_i },
       state.favouriteBooks,
       addFavouriteBook,
