@@ -11,6 +11,8 @@ import {
 } from "../utils/bookUtils";
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
 import DisplayDataCard from "./DisplayDataCard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DisplayBooks: React.FC<DisplayBookProps> = ({
   data,
@@ -44,6 +46,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
   ) => {
     if (ifBookisRead(key)) {
       removeReadBook(key);
+      toast("Book removed from ReadingHistory");
     } else {
       setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
       setReviewFormVisibility(true);
@@ -60,12 +63,18 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
     first_publish_year: number,
     cover_i: string
   ) => {
+    const isCurrentFavourite = ifBookIsFavourite(key);
     toggleFavouriteBookUtil(
       { key, title, author_name, first_publish_year, cover_i },
       state.favouriteBooks,
       addFavouriteBook,
       removeFavouriteBook
     );
+    if (isCurrentFavourite) {
+      toast("Book removed from favourites");
+    } else {
+      return;
+    }
   };
 
   const isEmptySearch = data?.docs.length === 0;
@@ -81,6 +90,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
           {isEmptyRead && "No books added to Reading History yet."}
         </section>
       )}
+      <ToastContainer />
       <DisplayDataCardContainer>
         {books.map((book: Book) => (
           <article key={book.key}>

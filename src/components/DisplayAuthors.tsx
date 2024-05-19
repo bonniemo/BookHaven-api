@@ -9,6 +9,7 @@ import {
 } from "../utils/bookUtils";
 import DisplayDataCard from "./DisplayDataCard";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
+import { ToastContainer, toast } from "react-toastify";
 
 const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
   const { state } = useContext(GlobalContext);
@@ -27,6 +28,7 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
     top_work: string,
     top_subjects: string[]
   ) => {
+    const isCurrentFavourite = ifAuthorIsFavourite(key);
     toggleFavouriteAuthorUtil(
       {
         key,
@@ -39,6 +41,11 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
       addFavouriteAuthor,
       removeFavouriteAuthor
     );
+    if (isCurrentFavourite) {
+      toast("Author removed from favourites");
+    } else {
+      return;
+    }
   };
 
   const isEmptySearch = data?.docs.length === 0;
@@ -52,6 +59,7 @@ const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
           {isEmptyFavourites && "No favourite authors added yet."}
         </section>
       )}
+      <ToastContainer />
       <DisplayDataCardContainer>
         {authors.map((author) => (
           <DisplayDataCard

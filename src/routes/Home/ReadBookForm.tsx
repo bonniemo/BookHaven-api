@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useFormInput } from "../../hooks/useFormInput";
 import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
 import { ReadBookProps } from "../../types/Types";
@@ -28,6 +29,7 @@ const ReadBookForm = ({
       userNumPages.value
     );
     setReviewFormVisibility(false);
+    toast("Added to Reading History");
   };
 
   return (
