@@ -1,5 +1,4 @@
-import React from "react";
-import { MostReadAuthor } from "../../utils/MostReadAuthor";
+import MostReadAuthor from "../../components/MostReadAuthor";
 import { useAggDataCalc } from "../../hooks/useAggDataCalc";
 
 const ReadingStatistics = () => {
@@ -10,7 +9,6 @@ const ReadingStatistics = () => {
     readPages,
     averageBookRating,
   } = useAggDataCalc();
-  const mostReadAuthor = MostReadAuthor();
   return (
     <article className="mx-10 mt-10 leading-loose text-lg">
       <h2 className="mb-5 text-2xl">My Reading Statistics</h2>
@@ -21,23 +19,7 @@ const ReadingStatistics = () => {
       {!Number.isNaN(averageBookRating) && (
         <p>Avreage rating: {Math.floor(averageBookRating)}</p>
       )}
-      {mostReadAuthor.length > 0 && (
-        <p>
-          {mostReadAuthor.map((author) => (
-            <React.Fragment key={author.author}>
-              {author.numBooks > 1 && (
-                <span>
-                  Most Read author:
-                  <span>
-                    {" "}
-                    {author.author}, {author.numBooks} books
-                  </span>
-                </span>
-              )}
-            </React.Fragment>
-          ))}
-        </p>
-      )}
+      <MostReadAuthor />
     </article>
   );
 };
