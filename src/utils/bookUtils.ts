@@ -11,8 +11,8 @@ export const ifBookIsFavouriteUtil = (
   return favouriteBooks.some((favouriteBook) => favouriteBook.key === bookKey);
 };
 
-export const getBookInfo = (book: Book) => {
-  const { key, title, author_name, first_publish_year, cover_i } = book;
+export const getBookInfo = (bookObj: Book) => {
+  const { key, title, author_name, first_publish_year, cover_i } = bookObj;
   return { key, title, author_name, first_publish_year, cover_i }
 }
 

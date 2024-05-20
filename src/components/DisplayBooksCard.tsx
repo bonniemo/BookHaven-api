@@ -6,7 +6,7 @@ import { ifBookIsFavouriteUtil, ifBookIsReadUtil } from "../utils/bookUtils";
 import DisplayDataCard from "./DisplayDataCard";
 
 const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
-  books,
+  booksArr,
   openReviewForm,
   toggleFavourite,
   setReviewFormVisibility,
@@ -23,7 +23,7 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
 
   return (
     <>
-      {books.map((book: Book) => (
+      {booksArr.map((book: Book) => (
         <article key={book.key}>
           {(!reviewFormVisibility || selectedBook?.key !== book.key) && (
             <DisplayDataCard

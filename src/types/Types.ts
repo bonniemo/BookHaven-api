@@ -52,7 +52,7 @@ export type DisplayDataCards = ChildrenProp & {
 };
 
 export type DisplayBooksCardProps = {
-  books: Book[];
+  booksArr: Book[];
   openReviewForm: (
     key: string,
     title: string,

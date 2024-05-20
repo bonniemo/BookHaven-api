@@ -4,6 +4,7 @@ import { GlobalContext } from "../state/GlobalStateContext";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
 import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
+  
   getBookInfo,
   ifBookIsFavouriteUtil,
   ifBookIsReadUtil,
@@ -20,7 +21,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
   read,
 }) => {
   const { state } = useContext(GlobalContext);
-  const books = favourites
+  const booksArr = favourites
     ? state.favouriteBooks
     : read
       ? state.readBooks
@@ -56,11 +57,11 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
   const ifBookIsFavourite = (bookKey: string) =>
     ifBookIsFavouriteUtil(bookKey, state.favouriteBooks);
 
-  const toggleFavourite = (book: Book) => {
-    const bookInfo = getBookInfo(book);
-    const isCurrentFavourite = ifBookIsFavourite(book.key);
+  const toggleFavourite = (bookObj: Book) => {
+    const bookItem = getBookInfo(bookObj);
+    const isCurrentFavourite = ifBookIsFavourite(bookObj.key);
     toggleFavouriteBookUtil(
-      bookInfo,
+      bookItem,
       state.favouriteBooks,
       addFavouriteBook,
       removeFavouriteBook
@@ -88,7 +89,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
       <ToastContainer />
       <DisplayDataCardContainer>
         <DisplayBooksCard
-          books={books}
+          booksArr={booksArr}
           openReviewForm={openReviewForm}
           toggleFavourite={toggleFavourite}
           setReviewFormVisibility={setReviewFormVisibility}
