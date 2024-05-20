@@ -5,23 +5,29 @@ import { ReadBookProps } from "../../types/Types";
 import { useContext } from "react";
 import { GlobalContext } from "../../state/GlobalStateContext";
 
-const ReadBookForm = ({
-  setReviewFormVisibility,
-}: ReadBookProps) => {
+const ReadBookForm = ({ setReviewFormVisibility }: ReadBookProps) => {
   const { state } = useContext(GlobalContext);
   const addReadBook = useGlobalDispatchAdd("ADD_READ_BOOK");
   const userRating = useFormInput("");
   const userReview = useFormInput("");
   const userNumPages = useFormInput("");
+  const bookToReview = state.booksToReview;
 
   const handleSubmitRead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+    addReadBook(
+      bookToReview?.key || "",
+      bookToReview?.title || "",
+      bookToReview?.author_name || [""],
+      bookToReview?.first_publish_year || 0,
+      bookToReview?.cover_i || "",
+      userRating.value,
+      userReview.value,
+      userNumPages.value
+    );
     setReviewFormVisibility(false);
     toast("Added to Reading History");
   };
-
-  const bookToReview = state.booksToReview;
 
   return (
     <>
