@@ -4,28 +4,32 @@ import { GlobalContext } from "../state/GlobalStateContext";
 import { Book, DisplayBooksCardProps } from "../types/Types";
 import { ifBookIsFavouriteUtil, ifBookIsReadUtil } from "../utils/bookUtils";
 import DisplayDataCard from "./DisplayDataCard";
+import { useGlobalDispatchReviewBook } from "../hooks/useGlobalDispatchReviewBook";
 
 const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
   booksArr,
-  openReviewForm,
   toggleFavourite,
   setReviewFormVisibility,
-  selectedBook,
-  reviewFormVisibility,
+  reviewFormVisibilityKey,
 }) => {
   const { state } = useContext(GlobalContext);
+  const setBookToReview = useGlobalDispatchReviewBook();
 
-  const ifBookIsFavourite = (bookKey: string) =>
-    ifBookIsFavouriteUtil(bookKey, state.favouriteBooks);
+  const ifBookIsFavourite = (key: string) =>
+    ifBookIsFavouriteUtil(key, state.favouriteBooks);
 
-  const ifBookisRead = (bookKey: string) =>
-    ifBookIsReadUtil(bookKey, state.readBooks);
+  const ifBookisRead = (key: string) => ifBookIsReadUtil(key, state.readBooks);
+
+  const handleOpenReviewForm = (key: string) => {
+    setBookToReview(booksArr.find((book) => book.key === key) || null);
+    setReviewFormVisibility(key);
+  };
 
   return (
     <>
       {booksArr.map((book: Book) => (
         <article key={book.key}>
-          {(!reviewFormVisibility || selectedBook?.key !== book.key) && (
+          {reviewFormVisibilityKey !== book.key && (
             <DisplayDataCard
               imgUrl={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
               title={book.title}
@@ -37,26 +41,11 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
               isFavourite={ifBookIsFavourite(book.key)}
               isRead={ifBookisRead(book.key)}
               onToggleFavourite={() => toggleFavourite(book)}
-              onOpenReviewForm={() =>
-                openReviewForm(
-                  book.key,
-                  book.title,
-                  book.author_name,
-                  book.first_publish_year,
-                  book.cover_i
-                )
-              }
+              onOpenReviewForm={() => handleOpenReviewForm(book.key)}
             />
           )}
-          {reviewFormVisibility && selectedBook?.key === book.key && (
-            <ReadBookForm
-              dataKey={selectedBook.key}
-              title={selectedBook.title}
-              author_name={selectedBook.author_name}
-              cover_i={selectedBook.cover_i}
-              first_publish_year={selectedBook.first_publish_year}
-              setReviewFormVisibility={setReviewFormVisibility}
-            />
+          {reviewFormVisibilityKey === book.key && (
+            <ReadBookForm setReviewFormVisibility={setReviewFormVisibility} />
           )}
         </article>
       ))}

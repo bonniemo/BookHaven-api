@@ -5,6 +5,7 @@ export const InitialState: InitialStateTypes = {
   favouriteBooks: [],
   readBooks: [],
   favouriteAuthors: [],
+  reviewChosenBook: null,
 };
 
 export const GlobalContext = createContext<{

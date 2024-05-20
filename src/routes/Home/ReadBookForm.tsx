@@ -2,15 +2,13 @@ import { toast } from "react-toastify";
 import { useFormInput } from "../../hooks/useFormInput";
 import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
 import { ReadBookProps } from "../../types/Types";
+import { useContext } from "react";
+import { GlobalContext } from "../../state/GlobalStateContext";
 
 const ReadBookForm = ({
-  dataKey,
-  title,
-  author_name,
-  cover_i,
-  first_publish_year,
   setReviewFormVisibility,
 }: ReadBookProps) => {
+  const { state } = useContext(GlobalContext);
   const addReadBook = useGlobalDispatchAdd("ADD_READ_BOOK");
   const userRating = useFormInput("");
   const userReview = useFormInput("");
@@ -18,19 +16,12 @@ const ReadBookForm = ({
 
   const handleSubmitRead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addReadBook(
-      dataKey,
-      title,
-      author_name,
-      first_publish_year,
-      cover_i,
-      userRating.value,
-      userReview.value,
-      userNumPages.value
-    );
+  
     setReviewFormVisibility(false);
     toast("Added to Reading History");
   };
+
+  const bookToReview = state.booksToReview;
 
   return (
     <>
@@ -40,11 +31,11 @@ const ReadBookForm = ({
         </h2>
         <img
           className="w-full h-52 object-contain object-center rounded mb-4"
-          src={`https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`}
-          alt={`Book cover of ${title}`}
+          src={`https://covers.openlibrary.org/b/id/${bookToReview?.cover_i}-M.jpg`}
+          alt={`Book cover of ${bookToReview?.title}`}
         />
         <p>
-          {title} by {author_name}
+          {bookToReview?.title} by {bookToReview?.author_name}
         </p>
         <form className="flex flex-col" onSubmit={handleSubmitRead}>
           <>

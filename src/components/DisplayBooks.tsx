@@ -4,10 +4,8 @@ import { GlobalContext } from "../state/GlobalStateContext";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
 import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
-  
   getBookInfo,
-  ifBookIsFavouriteUtil,
-  ifBookIsReadUtil,
+  ifBookIsFavouriteUtil,  
   toggleFavouriteBookUtil,
 } from "../utils/bookUtils";
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
@@ -31,31 +29,10 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
   const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
   const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
 
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-  const [reviewFormVisibility, setReviewFormVisibility] =
-    useState<boolean>(false);
+  const [selectedkey, setSelectedKey] = useState<string | null>(null);
 
-  const ifBookisRead = (bookKey: string) =>
-    ifBookIsReadUtil(bookKey, state.readBooks);
-
-  const openReviewForm = (
-    key: string,
-    title: string,
-    author_name: string[],
-    first_publish_year: number,
-    cover_i: string
-  ) => {
-    if (ifBookisRead(key)) {
-      removeReadBook(key);
-      toast("Book removed from ReadingHistory");
-    } else {
-      setSelectedBook({ key, title, author_name, cover_i, first_publish_year });
-      setReviewFormVisibility(true);
-    }
-  };
-
-  const ifBookIsFavourite = (bookKey: string) =>
-    ifBookIsFavouriteUtil(bookKey, state.favouriteBooks);
+  const ifBookIsFavourite = (key: string) =>
+    ifBookIsFavouriteUtil(key, state.favouriteBooks);
 
   const toggleFavourite = (bookObj: Book) => {
     const bookItem = getBookInfo(bookObj);
@@ -72,7 +49,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
       return;
     }
   };
-  
+
   const isEmptySearch = data?.docs.length === 0;
   const isEmptyFavourites = favourites && state.favouriteBooks.length === 0;
   const isEmptyRead = read && state.readBooks.length === 0;
@@ -90,11 +67,9 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
       <DisplayDataCardContainer>
         <DisplayBooksCard
           booksArr={booksArr}
-          openReviewForm={openReviewForm}
           toggleFavourite={toggleFavourite}
-          setReviewFormVisibility={setReviewFormVisibility}
-          selectedBook={selectedBook}
-          reviewFormVisibility={reviewFormVisibility}
+          reviewFormVisibilityKey={selectedkey}
+          setReviewFormVisibility={setSelectedKey}
         />
       </DisplayDataCardContainer>
     </>

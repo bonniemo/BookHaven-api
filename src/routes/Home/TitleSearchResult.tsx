@@ -1,7 +1,7 @@
 import DisplayBooks from "../../components/DisplayBooks";
 import { SearchBooksProps } from "../../types/Types";
 
-const TitleSearchResult = ({ data }: SearchBooksProps) => {
+const TitleSearchResult = ({ data }: SearchBooksProps) => {  
   return <DisplayBooks data={data} />;
 };
 

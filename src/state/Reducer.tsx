@@ -14,18 +14,6 @@ export const reducer = (state: InitialStateTypes, action: Action) => {
           (fav) => fav.key !== action.payload
         ),
       };
-    case "ADD_FAV_AUTHOR":
-      return {
-        ...state,
-        favouriteAuthors: [...state.favouriteAuthors, action.payload],
-      };
-    case "REMOVE_FAV_AUTHOR":
-      return {
-        ...state,
-        favouriteAuthors: state.favouriteAuthors.filter(
-          (fav) => fav.key !== action.payload
-        ),
-      };
     case "ADD_READ_BOOK":
       return {
         ...state,
@@ -36,6 +24,23 @@ export const reducer = (state: InitialStateTypes, action: Action) => {
         ...state,
         readBooks: state.readBooks.filter(
           (read) => read.key !== action.payload
+        ),
+      };
+    case "SET_REVIEW_BOOK":
+      return {
+        ...state,
+        reviewChosenBook: action.payload,
+      };
+    case "ADD_FAV_AUTHOR":
+      return {
+        ...state,
+        favouriteAuthors: [...state.favouriteAuthors, action.payload],
+      };
+    case "REMOVE_FAV_AUTHOR":
+      return {
+        ...state,
+        favouriteAuthors: state.favouriteAuthors.filter(
+          (fav) => fav.key !== action.payload
         ),
       };
     default:
