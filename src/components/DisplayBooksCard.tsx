@@ -5,24 +5,23 @@ import { Book, DisplayBooksCardProps } from "../types/Types";
 import { ifBookIsFavouriteUtil, ifBookIsReadUtil } from "../utils/bookUtils";
 import DisplayDataCard from "./DisplayDataCard";
 import { useGlobalDispatchReviewBook } from "../hooks/useGlobalDispatchReviewBook";
+import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
 
 const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
   booksArr,
   toggleFavourite,
 }) => {
   const { state } = useContext(GlobalContext);
-  const setBookToReview = useGlobalDispatchReviewBook();
- 
+  const setBookToReview = useGlobalDispatchReviewBook(); 
   const [reviewFormVisibilityKey, setReviewFormVisibilityKey] = useState("");
+  const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
 
   useEffect(() => {
     const currentBook = booksArr.find(
       (book) => book.key === reviewFormVisibilityKey
     );
     if (currentBook) {
-      setBookToReview(currentBook);
-      console.log("curr bok:", currentBook)
-      console.log("state:", state.bookToReview)
+      setBookToReview(currentBook);      
     } else {
       return;
     }
@@ -36,7 +35,7 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
   const handleOpenReviewForm = (book: Book) => {
     console.log(book.title)
     if (ifBookisRead(book.key)) {
-      return;
+      removeReadBook(book.key)
     } else {
       setReviewFormVisibilityKey(book.key);      
     }

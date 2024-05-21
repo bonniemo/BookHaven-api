@@ -26,8 +26,7 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
       : data?.docs || [];
 
   const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
-  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
-  const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
+  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");  
 
   const ifBookIsFavourite = (key: string) =>
     ifBookIsFavouriteUtil(key, state.favouriteBooks);
