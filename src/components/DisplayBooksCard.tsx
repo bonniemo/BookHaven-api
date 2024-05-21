@@ -16,6 +16,14 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
   const [reviewFormVisibilityKey, setReviewFormVisibilityKey] = useState("");
   const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
 
+  const handleOpenReviewForm = (book: Book) => {   
+    if (ifBookisRead(book.key)) {
+      removeReadBook(book.key)
+    } else {
+      setReviewFormVisibilityKey(book.key);      
+    }
+  };
+
   useEffect(() => {
     const currentBook = booksArr.find(
       (book) => book.key === reviewFormVisibilityKey
@@ -29,17 +37,7 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
 
   const ifBookIsFavourite = (key: string) =>
     ifBookIsFavouriteUtil(key, state.favouriteBooks);
-
   const ifBookisRead = (key: string) => ifBookIsReadUtil(key, state.readBooks);
-
-  const handleOpenReviewForm = (book: Book) => {
-    console.log(book.title)
-    if (ifBookisRead(book.key)) {
-      removeReadBook(book.key)
-    } else {
-      setReviewFormVisibilityKey(book.key);      
-    }
-  };
 
   return (
     <>

@@ -8,8 +8,7 @@ import { GlobalContext } from "../../state/GlobalStateContext";
 const ReadBookForm = ({ setReviewFormVisibilityKey }: ReadBookProps) => {
   const { state } = useContext(GlobalContext);
   const addReadBook = useGlobalDispatchAdd("ADD_READ_BOOK");
-  const bookToReview = state.bookToReview;
-  console.log(state.bookToReview)
+  const bookToReview = state.bookToReview;  
 
   const userRating = useFormInput("");
   const userReview = useFormInput("");
@@ -17,7 +16,7 @@ const ReadBookForm = ({ setReviewFormVisibilityKey }: ReadBookProps) => {
 
   const handleSubmitRead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (bookToReview) {
+    if (typeof bookToReview === "object") {
       const { key, title, author_name, first_publish_year, cover_i } =
         bookToReview;
       addReadBook(
@@ -35,7 +34,7 @@ const ReadBookForm = ({ setReviewFormVisibilityKey }: ReadBookProps) => {
     }
   };
 
-  if (!bookToReview) {
+  if (typeof bookToReview !== "object") {
     return <p>error</p>;
   }
 
