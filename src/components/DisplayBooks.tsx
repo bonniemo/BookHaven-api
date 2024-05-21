@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { DisplayBookProps, Book } from "../types/Types";
 import { GlobalContext } from "../state/GlobalStateContext";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
 import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
   getBookInfo,
-  ifBookIsFavouriteUtil,  
+  ifBookIsFavouriteUtil,
   toggleFavouriteBookUtil,
 } from "../utils/bookUtils";
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
@@ -28,8 +28,6 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
   const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
   const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
   const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
-
-  const [selectedkey, setSelectedKey] = useState<string | null>(null);
 
   const ifBookIsFavourite = (key: string) =>
     ifBookIsFavouriteUtil(key, state.favouriteBooks);
@@ -68,8 +66,6 @@ const DisplayBooks: React.FC<DisplayBookProps> = ({
         <DisplayBooksCard
           booksArr={booksArr}
           toggleFavourite={toggleFavourite}
-          reviewFormVisibilityKey={selectedkey}
-          setReviewFormVisibility={setSelectedKey}
         />
       </DisplayDataCardContainer>
     </>

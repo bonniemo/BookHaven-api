@@ -29,7 +29,7 @@ export const reducer = (state: InitialStateTypes, action: Action) => {
     case "SET_REVIEW_BOOK":
       return {
         ...state,
-        reviewChosenBook: action.payload,
+        bookToReview: action.payload,
       };
     case "ADD_FAV_AUTHOR":
       return {

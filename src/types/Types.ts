@@ -20,8 +20,8 @@ export type Author = {
 };
 
 // Read BookProps Types
-export type ReadBookProps = { 
-  setReviewFormVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+export type ReadBookProps = {
+  setReviewFormVisibilityKey: any;
 };
 
 // Display Card Types
@@ -45,10 +45,8 @@ export type DisplayDataCards = ChildrenProp & {
 };
 
 export type DisplayBooksCardProps = {
-  booksArr: Book[];  
+  booksArr: Book[];
   toggleFavourite: (bookObj: Book) => void;
-  setReviewFormVisibility: any;
-  reviewFormVisibilityKey: string | null;
 };
 
 // Display Data Types
@@ -88,8 +86,8 @@ export type ChildrenProp = {
 export type InitialStateTypes = {
   favouriteBooks: Book[];
   readBooks: Book[];
-  booksToReview: Book | null;
-  favouriteAuthors: Author[];  
+  bookToReview: Book | string;
+  favouriteAuthors: Author[];
 };
 
 export type Action =
@@ -97,6 +95,6 @@ export type Action =
   | { type: "REMOVE_FAV_BOOK"; payload: string }
   | { type: "ADD_READ_BOOK"; payload: Book }
   | { type: "REMOVE_READ_BOOK"; payload: string }
-  | { type: "SET_REVIEW_BOOK"; payload: string; }
+  | { type: "SET_REVIEW_BOOK"; payload: Book | string}
   | { type: "ADD_FAV_AUTHOR"; payload: Author }
-  | { type: "REMOVE_FAV_AUTHOR"; payload: string }
+  | { type: "REMOVE_FAV_AUTHOR"; payload: string };

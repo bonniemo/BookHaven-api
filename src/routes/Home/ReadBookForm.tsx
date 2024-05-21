@@ -5,29 +5,39 @@ import { ReadBookProps } from "../../types/Types";
 import { useContext } from "react";
 import { GlobalContext } from "../../state/GlobalStateContext";
 
-const ReadBookForm = ({ setReviewFormVisibility }: ReadBookProps) => {
+const ReadBookForm = ({ setReviewFormVisibilityKey }: ReadBookProps) => {
   const { state } = useContext(GlobalContext);
   const addReadBook = useGlobalDispatchAdd("ADD_READ_BOOK");
+  const bookToReview = state.bookToReview;
+  console.log(state.bookToReview)
+
   const userRating = useFormInput("");
   const userReview = useFormInput("");
   const userNumPages = useFormInput("");
-  const bookToReview = state.booksToReview;
 
   const handleSubmitRead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addReadBook(
-      bookToReview?.key || "",
-      bookToReview?.title || "",
-      bookToReview?.author_name || [""],
-      bookToReview?.first_publish_year || 0,
-      bookToReview?.cover_i || "",
-      userRating.value,
-      userReview.value,
-      userNumPages.value
-    );
-    setReviewFormVisibility(false);
-    toast("Added to Reading History");
+    if (bookToReview) {
+      const { key, title, author_name, first_publish_year, cover_i } =
+        bookToReview;
+      addReadBook(
+        key!,
+        title!,
+        author_name!,
+        first_publish_year!,
+        cover_i!,
+        userRating.value,
+        userReview.value,
+        userNumPages.value
+      );
+      setReviewFormVisibilityKey(null);
+      toast("Added to Reading History");
+    }
   };
+
+  if (!bookToReview) {
+    return <p>error</p>;
+  }
 
   return (
     <>
@@ -37,11 +47,11 @@ const ReadBookForm = ({ setReviewFormVisibility }: ReadBookProps) => {
         </h2>
         <img
           className="w-full h-52 object-contain object-center rounded mb-4"
-          src={`https://covers.openlibrary.org/b/id/${bookToReview?.cover_i}-M.jpg`}
-          alt={`Book cover of ${bookToReview?.title}`}
+          src={`https://covers.openlibrary.org/b/id/${bookToReview.cover_i}-M.jpg`}
+          alt={`Book cover of ${bookToReview.title}`}
         />
         <p>
-          {bookToReview?.title} by {bookToReview?.author_name}
+          {bookToReview?.title} by {bookToReview.author_name}
         </p>
         <form className="flex flex-col" onSubmit={handleSubmitRead}>
           <>

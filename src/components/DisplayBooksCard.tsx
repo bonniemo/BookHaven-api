@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ReadBookForm from "../routes/Home/ReadBookForm";
 import { GlobalContext } from "../state/GlobalStateContext";
 import { Book, DisplayBooksCardProps } from "../types/Types";
@@ -9,20 +9,37 @@ import { useGlobalDispatchReviewBook } from "../hooks/useGlobalDispatchReviewBoo
 const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
   booksArr,
   toggleFavourite,
-  setReviewFormVisibility,
-  reviewFormVisibilityKey,
 }) => {
   const { state } = useContext(GlobalContext);
   const setBookToReview = useGlobalDispatchReviewBook();
+ 
+  const [reviewFormVisibilityKey, setReviewFormVisibilityKey] = useState("");
+
+  useEffect(() => {
+    const currentBook = booksArr.find(
+      (book) => book.key === reviewFormVisibilityKey
+    );
+    if (currentBook) {
+      setBookToReview(currentBook);
+      console.log("curr bok:", currentBook)
+      console.log("state:", state.bookToReview)
+    } else {
+      return;
+    }
+  }, [reviewFormVisibilityKey]);
 
   const ifBookIsFavourite = (key: string) =>
     ifBookIsFavouriteUtil(key, state.favouriteBooks);
 
   const ifBookisRead = (key: string) => ifBookIsReadUtil(key, state.readBooks);
 
-  const handleOpenReviewForm = (key: string) => {
-    setBookToReview(booksArr.find((book) => book.key === key) || null);
-    setReviewFormVisibility(key);
+  const handleOpenReviewForm = (book: Book) => {
+    console.log(book.title)
+    if (ifBookisRead(book.key)) {
+      return;
+    } else {
+      setReviewFormVisibilityKey(book.key);      
+    }
   };
 
   return (
@@ -41,11 +58,11 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
               isFavourite={ifBookIsFavourite(book.key)}
               isRead={ifBookisRead(book.key)}
               onToggleFavourite={() => toggleFavourite(book)}
-              onOpenReviewForm={() => handleOpenReviewForm(book.key)}
+              onOpenReviewForm={() => handleOpenReviewForm(book)}
             />
           )}
           {reviewFormVisibilityKey === book.key && (
-            <ReadBookForm setReviewFormVisibility={setReviewFormVisibility} />
+            <ReadBookForm setReviewFormVisibilityKey={setReviewFormVisibilityKey} />
           )}
         </article>
       ))}

@@ -4,7 +4,7 @@ import { Book } from "../types/Types";
 
 export const useGlobalDispatchReviewBook = () => {
     const { dispatch } = useContext(GlobalContext);
-    return (book: Book | null) => {
+    return (book: Book) => {
         dispatch({ type: "SET_REVIEW_BOOK", payload: book })
     }
 }
