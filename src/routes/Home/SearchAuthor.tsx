@@ -13,6 +13,7 @@ const SearchAuthor = () => {
       <input
         className="my-5 px-5 py-2 w-80 border-l-2 border-t-2 border-b-2 border-black rounded-l-md rounded-r-none"
         type="text"
+        id="searchInput"
         placeholder="Author"
         {...searchInput}
       />
