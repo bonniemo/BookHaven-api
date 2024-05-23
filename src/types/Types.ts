@@ -1,3 +1,5 @@
+import { InputHTMLAttributes } from "react";
+
 // Book Types
 export type Book = {
   key: string;
@@ -21,7 +23,7 @@ export type Author = {
 
 // Read BookProps Types
 export type ReadBookProps = {
-  setReviewFormVisibilityKey: any;
+  setCurrentReviewKey: (key: string) => void;
 };
 
 // Display Card Types
@@ -38,10 +40,6 @@ export type DisplayDataCardProps = {
   isRead?: boolean;
   onToggleFavourite?: () => void;
   onOpenReviewForm?: () => void;
-};
-
-export type DisplayDataCards = ChildrenProp & {
-  dataKey: string;
 };
 
 export type DisplayBooksCardProps = {
@@ -95,6 +93,13 @@ export type Action =
   | { type: "REMOVE_FAV_BOOK"; payload: string }
   | { type: "ADD_READ_BOOK"; payload: Book }
   | { type: "REMOVE_READ_BOOK"; payload: string }
-  | { type: "SET_REVIEW_BOOK"; payload: Book | string}
+  | { type: "SET_REVIEW_BOOK"; payload: Book | string }
   | { type: "ADD_FAV_AUTHOR"; payload: Author }
   | { type: "REMOVE_FAV_AUTHOR"; payload: string };
+
+  // Component types
+  export type FormInputProps = {
+    label: string;
+    type: string;
+    inputProps: InputHTMLAttributes<HTMLInputElement>;
+  };

@@ -12,28 +12,28 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
   toggleFavourite,
 }) => {
   const { state } = useContext(GlobalContext);
-  const setBookToReview = useGlobalDispatchReviewBook(); 
-  const [reviewFormVisibilityKey, setReviewFormVisibilityKey] = useState("");
+  const setBookToReview = useGlobalDispatchReviewBook();
+  const [currentReviewKey, setCurrentReviewKey] = useState("");
   const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
 
-  const handleOpenReviewForm = (book: Book) => {   
+  const handleOpenReviewForm = (book: Book) => {
     if (ifBookisRead(book.key)) {
-      removeReadBook(book.key)
+      removeReadBook(book.key);
     } else {
-      setReviewFormVisibilityKey(book.key);      
+      setCurrentReviewKey(book.key);
     }
   };
 
   useEffect(() => {
     const currentBook = booksArr.find(
-      (book) => book.key === reviewFormVisibilityKey
+      (book) => book.key === currentReviewKey
     );
     if (currentBook) {
-      setBookToReview(currentBook);      
+      setBookToReview(currentBook);
     } else {
       return;
     }
-  }, [reviewFormVisibilityKey]);
+  }, [currentReviewKey]);
 
   const ifBookIsFavourite = (key: string) =>
     ifBookIsFavouriteUtil(key, state.favouriteBooks);
@@ -43,7 +43,7 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
     <>
       {booksArr.map((book: Book) => (
         <article key={book.key}>
-          {reviewFormVisibilityKey !== book.key && (
+          {currentReviewKey !== book.key && (
             <DisplayDataCard
               imgUrl={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
               title={book.title}
@@ -58,8 +58,10 @@ const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
               onOpenReviewForm={() => handleOpenReviewForm(book)}
             />
           )}
-          {reviewFormVisibilityKey === book.key && (
-            <ReadBookForm setReviewFormVisibilityKey={setReviewFormVisibilityKey} />
+          {currentReviewKey === book.key && (
+            <ReadBookForm
+              setCurrentReviewKey={setCurrentReviewKey}
+            />
           )}
         </article>
       ))}

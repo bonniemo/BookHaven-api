@@ -4,11 +4,13 @@ import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
 import { ReadBookProps } from "../../types/Types";
 import { useContext } from "react";
 import { GlobalContext } from "../../state/GlobalStateContext";
+import FormInput from "../../components/FormInput";
+import { getBookInfo } from "../../utils/bookUtils";
 
-const ReadBookForm = ({ setReviewFormVisibilityKey }: ReadBookProps) => {
+const ReadBookForm = ({ setCurrentReviewKey }: ReadBookProps) => {
   const { state } = useContext(GlobalContext);
   const addReadBook = useGlobalDispatchAdd("ADD_READ_BOOK");
-  const bookToReview = state.bookToReview;  
+  const bookToReview = state.bookToReview;
 
   const userRating = useFormInput("");
   const userReview = useFormInput("");
@@ -17,23 +19,18 @@ const ReadBookForm = ({ setReviewFormVisibilityKey }: ReadBookProps) => {
   const handleSubmitRead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (typeof bookToReview === "object") {
-      const { key, title, author_name, first_publish_year, cover_i } =
-        bookToReview;
-      addReadBook(
-        key!,
-        title!,
-        author_name!,
-        first_publish_year!,
-        cover_i!,
-        userRating.value,
-        userReview.value,
-        userNumPages.value
-      );
-      setReviewFormVisibilityKey(null);
+      const bookInfo = getBookInfo(bookToReview);
+      const bookReview = {
+        ...bookInfo,
+        userRating: userRating.value,
+        userReview: userReview.value,
+        userNumPages: userNumPages.value,
+      };
+      addReadBook(bookReview);
+      setCurrentReviewKey("");
       toast("Added to Reading History");
     }
   };
-
   if (typeof bookToReview !== "object") {
     return <p>error</p>;
   }
@@ -52,38 +49,28 @@ const ReadBookForm = ({ setReviewFormVisibilityKey }: ReadBookProps) => {
         <p>
           {bookToReview?.title} by {bookToReview.author_name}
         </p>
+
         <form className="flex flex-col" onSubmit={handleSubmitRead}>
-          <>
-            <label className=" mt-3" htmlFor="userRating ">
-              Rating between 1 and 10
-            </label>
-            <input
-              className="border-2 border-stone-600 rounded-md"
-              type="number"
-              {...userRating}
-              id="userRating"
-              min="1"
-              max="10"
-            />
-          </>
-          <>
-            <label htmlFor="userReview">Your Review</label>
-            <input
-              className="border-2 border-stone-600 rounded-md"
-              type="text"
-              {...userReview}
-              id="userReview"
-            />
-          </>
-          <>
-            <label htmlFor="userNumPages">Number of pages</label>
-            <input
-              className="border-2 border-stone-600 rounded-md"
-              type="number"
-              {...userNumPages}
-              id="userNumPages"
-            />
-          </>
+          <FormInput
+            label="Rating between 1 and 10"
+            type="number"
+            inputProps={{
+              ...userRating,
+              id: "userRating",
+              min: "1",
+              max: "10",
+            }}
+          />
+          <FormInput
+            label="Your Review"
+            type="text"
+            inputProps={{ ...userReview, id: "userNumPAges" }}
+          />
+          <FormInput
+            label="Number of pages"
+            type="number"
+            inputProps={{ ...userNumPages, id: " userNumPages" }}
+          />
           <button
             className="my-5 px-5 py-2 bg-pink-400 rounded-lg hover:bg-purple-400 hover:font-bold"
             type="submit"
