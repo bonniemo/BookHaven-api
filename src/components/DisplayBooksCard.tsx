@@ -25,9 +25,7 @@ const DisplayBooksCard = ({
   };
 
   useEffect(() => {
-    const currentBook = booksArr.find(
-      (book) => book.key === currentReviewKey
-    );
+    const currentBook = booksArr.find((book) => book.key === currentReviewKey);
     if (currentBook) {
       setBookToReview(currentBook);
     } else {
@@ -59,9 +57,7 @@ const DisplayBooksCard = ({
             />
           )}
           {currentReviewKey === book.key && (
-            <ReadBookForm
-              setCurrentReviewKey={setCurrentReviewKey}
-            />
+            <ReadBookForm setCurrentReviewKey={setCurrentReviewKey} />
           )}
         </article>
       ))}

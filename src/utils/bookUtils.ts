@@ -17,11 +17,7 @@ export const toggleFavouriteBookUtil = (
   book: Book,
   favouriteBooks: Book[],
   addFavouriteBook: (
-    key: string,
-    title: string,
-    author_name: string[],
-    first_publish_year: number,
-    cover_i: string
+    book: Book
   ) => void,
   removeFavouriteBook: (key: string) => void
 ) => {
@@ -29,11 +25,7 @@ export const toggleFavouriteBookUtil = (
     removeFavouriteBook(book.key);
   } else {
     addFavouriteBook(
-      book.key,
-      book.title,
-      book.author_name,
-      book.first_publish_year,
-      book.cover_i
+      book
     );
   }
 };

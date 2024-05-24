@@ -84,7 +84,7 @@ export type ChildrenProp = {
 export type InitialStateTypes = {
   favouriteBooks: Book[];
   readBooks: Book[];
-  bookToReview: Book;
+  bookToReview: Book | null;
   favouriteAuthors: Author[];
 };
 
@@ -97,9 +97,9 @@ export type Action =
   | { type: "ADD_FAV_AUTHOR"; payload: Author }
   | { type: "REMOVE_FAV_AUTHOR"; payload: string };
 
-  // Component types
-  export type FormInputProps = {
-    label: string;
-    type: string;
-    inputProps: InputHTMLAttributes<HTMLInputElement>;
-  };
+// Component types
+export type FormInputProps = {
+  label: string;
+  type: string;
+  inputProps: InputHTMLAttributes<HTMLInputElement>;
+};

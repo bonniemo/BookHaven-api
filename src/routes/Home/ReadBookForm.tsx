@@ -19,7 +19,7 @@ const ReadBookForm = ({ setCurrentReviewKey }: ReadBookProps) => {
 
   const handleSubmitRead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (typeof bookToReview === "object") {
+    if (bookToReview) {
       const bookInfo = getBookInfo(bookToReview);
       const bookReview = {
         ...bookInfo,
@@ -32,8 +32,8 @@ const ReadBookForm = ({ setCurrentReviewKey }: ReadBookProps) => {
       toast("Added to Reading History");
     }
   };
-  if (typeof bookToReview !== "object") {
-    return <p>Book not found</p>;
+  if (!bookToReview) {
+    return <p>Error: No book selected for review.</p>;
   }
 
   return (

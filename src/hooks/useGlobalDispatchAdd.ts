@@ -6,11 +6,10 @@ export const useGlobalDispatchAdd = (
   actionType: "ADD_FAV_BOOK" | "ADD_READ_BOOK"
 ) => {
   const { dispatch } = useContext(GlobalContext);
-  return (
-    book: Book
-  ) =>
+  return (book: Book) => {
     dispatch({
       type: actionType,
       payload: book,
     });
+  };
 };

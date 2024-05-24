@@ -4,7 +4,6 @@ import { GlobalContext } from "../state/GlobalStateContext";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
 import { useGlobalDispatchAdd } from "../hooks/useGlobalDispatchAdd";
 import {
-  getBookInfo,
   ifBookIsFavouriteUtil,
   toggleFavouriteBookUtil,
 } from "../utils/bookUtils";
@@ -13,11 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DisplayBooksCard from "./DisplayBooksCard";
 
-const DisplayBooks = ({
-  data,
-  favourites,
-  read,
-}: DisplayBookProps) => {
+const DisplayBooks = ({ data, favourites, read }: DisplayBookProps) => {
   const { state } = useContext(GlobalContext);
   const booksArr = favourites
     ? state.favouriteBooks
@@ -26,16 +21,16 @@ const DisplayBooks = ({
       : data?.docs || [];
 
   const removeFavouriteBook = useGlobalDispatchRemove("REMOVE_FAV_BOOK");
-  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");  
+  const addFavouriteBook = useGlobalDispatchAdd("ADD_FAV_BOOK");
 
   const ifBookIsFavourite = (key: string) =>
     ifBookIsFavouriteUtil(key, state.favouriteBooks);
 
-  const toggleFavourite = (bookObj: Book) => {
-    const bookItem = getBookInfo(bookObj);
-    const isCurrentFavourite = ifBookIsFavourite(bookObj.key);
+  const toggleFavourite = (book: Book) => {
+    
+    const isCurrentFavourite = ifBookIsFavourite(book.key);
     toggleFavouriteBookUtil(
-      bookItem,
+      book,
       state.favouriteBooks,
       addFavouriteBook,
       removeFavouriteBook
