@@ -7,10 +7,10 @@ import DisplayDataCard from "./DisplayDataCard";
 import { useGlobalDispatchReviewBook } from "../hooks/useGlobalDispatchReviewBook";
 import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
 
-const DisplayBooksCard: React.FC<DisplayBooksCardProps> = ({
+const DisplayBooksCard = ({
   booksArr,
   toggleFavourite,
-}) => {
+}: DisplayBooksCardProps) => {
   const { state } = useContext(GlobalContext);
   const setBookToReview = useGlobalDispatchReviewBook();
   const [currentReviewKey, setCurrentReviewKey] = useState("");

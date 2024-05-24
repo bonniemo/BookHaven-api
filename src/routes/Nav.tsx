@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import iconHome from "../Assets/home.png";
 import iconFavourites from "../Assets/book.png";
-import iconSearch from "../Assets/search.png";
 
 const Nav = () => {
   return (

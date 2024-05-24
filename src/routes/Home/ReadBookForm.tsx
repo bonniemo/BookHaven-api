@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../state/GlobalStateContext";
 import FormInput from "../../components/FormInput";
 import { getBookInfo } from "../../utils/bookUtils";
+import SubmitButton from "../../components/ButtonComponents/SubmitButton";
 
 const ReadBookForm = ({ setCurrentReviewKey }: ReadBookProps) => {
   const { state } = useContext(GlobalContext);
@@ -32,7 +33,7 @@ const ReadBookForm = ({ setCurrentReviewKey }: ReadBookProps) => {
     }
   };
   if (typeof bookToReview !== "object") {
-    return <p>error</p>;
+    return <p>Book not found</p>;
   }
 
   return (
@@ -71,12 +72,7 @@ const ReadBookForm = ({ setCurrentReviewKey }: ReadBookProps) => {
             type="number"
             inputProps={{ ...userNumPages, id: " userNumPages" }}
           />
-          <button
-            className="my-5 px-5 py-2 bg-pink-400 rounded-lg hover:bg-purple-400 hover:font-bold"
-            type="submit"
-          >
-            Submit
-          </button>
+          <SubmitButton />
         </form>
       </article>
     </>

@@ -1,6 +1,6 @@
 import { FormInputProps } from "../types/Types";
 
-const FormInput: React.FC<FormInputProps> = ({ label, type, inputProps }) => {
+const FormInput = ({ label, type, inputProps }: FormInputProps) => {
   return (
     <>
       <label className="mt-3" htmlFor={inputProps.id}>

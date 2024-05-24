@@ -3,10 +3,10 @@ export type ReadingHistoryButtonProps = {
   onOpenReviewForm: () => void;
 };
 
-const ReadingHistoryButton: React.FC<ReadingHistoryButtonProps> = ({
+const ReadingHistoryButton = ({
   isRead,
   onOpenReviewForm,
-}) => {
+}: ReadingHistoryButtonProps) => {
   return (
     <button
       className={

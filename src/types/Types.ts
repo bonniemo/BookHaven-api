@@ -84,7 +84,7 @@ export type ChildrenProp = {
 export type InitialStateTypes = {
   favouriteBooks: Book[];
   readBooks: Book[];
-  bookToReview: Book | string;
+  bookToReview: Book;
   favouriteAuthors: Author[];
 };
 
@@ -93,7 +93,7 @@ export type Action =
   | { type: "REMOVE_FAV_BOOK"; payload: string }
   | { type: "ADD_READ_BOOK"; payload: Book }
   | { type: "REMOVE_READ_BOOK"; payload: string }
-  | { type: "SET_REVIEW_BOOK"; payload: Book | string }
+  | { type: "SET_REVIEW_BOOK"; payload: Book }
   | { type: "ADD_FAV_AUTHOR"; payload: Author }
   | { type: "REMOVE_FAV_AUTHOR"; payload: string };
 

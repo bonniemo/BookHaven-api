@@ -1,8 +1,8 @@
 import { DisplayDataCardProps } from "../types/Types";
-import FavouriteToggleButton from "./FavouriteToggleButton";
-import ReadingHistoryButton from "./ReadingHistoryButton";
+import FavouriteToggleButton from "./ButtonComponents/FavouriteToggleButton";
+import ReadingHistoryButton from "./ButtonComponents/ReadingHistoryButton";
 
-const DisplayDataCard: React.FC<DisplayDataCardProps> = ({
+const DisplayDataCard = ({
   imgUrl,
   title,
   subTitle,
@@ -15,7 +15,7 @@ const DisplayDataCard: React.FC<DisplayDataCardProps> = ({
   isRead = false,
   onToggleFavourite,
   onOpenReviewForm,
-}) => {
+}: DisplayDataCardProps) => {
   return (
     <article className="min-w-72 max-w-72 max-h-min p-5 rounded-lg border-8 border-stone-900 flex flex-col leading-relaxed">
       <img

@@ -5,10 +5,10 @@ export type FavouriteToggleButtonProps = {
   onToggleFavourite: () => void;
 };
 
-const FavouriteToggleButton: React.FC<FavouriteToggleButtonProps> = ({
+const FavouriteToggleButton = ({
   isFavourite,
   onToggleFavourite,
-}) => {
+}: FavouriteToggleButtonProps) => {
   return (
     <button
       className="my-5 px-5 py-2 bg-pink-300 rounded-lg"

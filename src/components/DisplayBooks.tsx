@@ -13,11 +13,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DisplayBooksCard from "./DisplayBooksCard";
 
-const DisplayBooks: React.FC<DisplayBookProps> = ({
+const DisplayBooks = ({
   data,
   favourites,
   read,
-}) => {
+}: DisplayBookProps) => {
   const { state } = useContext(GlobalContext);
   const booksArr = favourites
     ? state.favouriteBooks

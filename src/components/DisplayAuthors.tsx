@@ -8,7 +8,7 @@ import DisplayDataCardContainer from "./DisplayDataCardContainer";
 import { ToastContainer, toast } from "react-toastify";
 import { ifAuthorIsFavouriteUtil, toggleFavouriteAuthorUtil } from "../utils/authorUtils";
 
-const DisplayAuthor: React.FC<DisplayAuthorProps> = ({ data, favourites }) => {
+const DisplayAuthor = ({ data, favourites }: DisplayAuthorProps) => {
   const { state } = useContext(GlobalContext);
   const authors = favourites ? state.favouriteAuthors : data?.docs || [];
 
