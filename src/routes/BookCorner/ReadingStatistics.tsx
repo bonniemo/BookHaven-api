@@ -1,4 +1,4 @@
-import MostReadAuthor from "../../components/MostReadAuthor";
+import MostReadAuthor from "./MostReadAuthor";
 import { useAggDataCalc } from "../../hooks/useAggDataCalc";
 
 const ReadingStatistics = () => {

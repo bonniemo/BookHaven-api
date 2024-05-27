@@ -5,7 +5,7 @@ import searchTitleGrey from "../../Assets/search-book-grey.png";
 import searchAuthorImg from "../../Assets/search-writer.png";
 import SearchAuthorGrey from "../../Assets/search-author-grey.png";
 import { useState } from "react";
-import RandomAuthorQuote from "../../components/RandomAuthorQuote";
+import RandomAuthorQuote from "./RandomAuthorQuote";
 
 const Home = () => {
   const [searchTitle, setSearchTitle] = useState(true);

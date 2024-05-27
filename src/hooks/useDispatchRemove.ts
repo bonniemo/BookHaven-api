@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "../state/GlobalStateContext";
 
-export const useGlobalDispatchRemove = (
+export const useDispatchRemove = (
   actionType: "REMOVE_FAV_BOOK" | "REMOVE_READ_BOOK" | "REMOVE_FAV_AUTHOR"
 ) => {
   const { dispatch } = useContext(GlobalContext);

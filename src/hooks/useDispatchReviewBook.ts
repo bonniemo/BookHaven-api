@@ -2,14 +2,9 @@ import { useContext } from "react";
 import { GlobalContext } from "../state/GlobalStateContext";
 import { Book } from "../types/Types";
 
-export const useGlobalDispatchAdd = (
-  actionType: "ADD_FAV_BOOK" | "ADD_READ_BOOK"
-) => {
+export const useDispatchReviewBook = () => {
   const { dispatch } = useContext(GlobalContext);
   return (book: Book) => {
-    dispatch({
-      type: actionType,
-      payload: book,
-    });
+    dispatch({ type: "SET_REVIEW_BOOK", payload: book });
   };
 };

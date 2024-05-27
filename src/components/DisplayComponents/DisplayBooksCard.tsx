@@ -1,20 +1,21 @@
-import { useContext, useEffect, useState } from "react";
-import ReadBookForm from "../routes/Home/ReadBookForm";
-import { GlobalContext } from "../state/GlobalStateContext";
-import { Book, DisplayBooksCardProps } from "../types/Types";
-import { ifBookIsFavouriteUtil, ifBookIsReadUtil } from "../utils/bookUtils";
+import { useContext, useState, useEffect } from "react";
+
+import ReadBookForm from "../../routes/Home/ReadBookForm";
+import { GlobalContext } from "../../state/GlobalStateContext";
+import { DisplayBooksCardProps, Book } from "../../types/Types";
+import { ifBookIsFavouriteUtil, ifBookIsReadUtil } from "../../utils/bookUtils";
 import DisplayDataCard from "./DisplayDataCard";
-import { useGlobalDispatchReviewBook } from "../hooks/useGlobalDispatchReviewBook";
-import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
+import { useDispatchRemove } from "../../hooks/useDispatchRemove";
+import { useDispatchReviewBook } from "../../hooks/useDispatchReviewBook";
 
 const DisplayBooksCard = ({
   booksArr,
   toggleFavourite,
 }: DisplayBooksCardProps) => {
   const { state } = useContext(GlobalContext);
-  const setBookToReview = useGlobalDispatchReviewBook();
+  const setBookToReview = useDispatchReviewBook();
   const [currentReviewKey, setCurrentReviewKey] = useState("");
-  const removeReadBook = useGlobalDispatchRemove("REMOVE_READ_BOOK");
+  const removeReadBook = useDispatchRemove("REMOVE_READ_BOOK");
 
   const handleOpenReviewForm = (book: Book) => {
     if (ifBookisRead(book.key)) {

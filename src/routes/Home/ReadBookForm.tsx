@@ -1,16 +1,16 @@
 import { toast } from "react-toastify";
 import { useFormInput } from "../../hooks/useFormInput";
-import { useGlobalDispatchAdd } from "../../hooks/useGlobalDispatchAdd";
 import { ReadBookProps } from "../../types/Types";
 import { useContext } from "react";
 import { GlobalContext } from "../../state/GlobalStateContext";
 import FormInput from "../../components/FormInput";
 import { getBookInfo } from "../../utils/bookUtils";
 import SubmitButton from "../../components/ButtonComponents/SubmitButton";
+import { useDispatchAdd } from "../../hooks/useDispatchAdd";
 
 const ReadBookForm = ({ setCurrentReviewKey }: ReadBookProps) => {
   const { state } = useContext(GlobalContext);
-  const addReadBook = useGlobalDispatchAdd("ADD_READ_BOOK");
+  const addReadBook = useDispatchAdd("ADD_READ_BOOK");
   const bookToReview = state.bookToReview;
 
   const userRating = useFormInput("");

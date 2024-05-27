@@ -1,19 +1,23 @@
 import { useContext } from "react";
-import { useGlobalDispatchAddAuthor } from "../hooks/useGlobalDispatchAddAuthor";
-import { useGlobalDispatchRemove } from "../hooks/useGlobalDispatchRemove";
-import { GlobalContext } from "../state/GlobalStateContext";
-import { DisplayAuthorProps } from "../types/Types";
 import DisplayDataCard from "./DisplayDataCard";
 import DisplayDataCardContainer from "./DisplayDataCardContainer";
 import { ToastContainer, toast } from "react-toastify";
-import { ifAuthorIsFavouriteUtil, toggleFavouriteAuthorUtil } from "../utils/authorUtils";
+
+import { GlobalContext } from "../../state/GlobalStateContext";
+import { DisplayAuthorProps } from "../../types/Types";
+import {
+  ifAuthorIsFavouriteUtil,
+  toggleFavouriteAuthorUtil,
+} from "../../utils/authorUtils";
+import { useDispatchAddAuthor } from "../../hooks/useDispatchAddAuthor";
+import { useDispatchRemove } from "../../hooks/useDispatchRemove";
 
 const DisplayAuthor = ({ data, favourites }: DisplayAuthorProps) => {
   const { state } = useContext(GlobalContext);
   const authors = favourites ? state.favouriteAuthors : data?.docs || [];
 
-  const addFavouriteAuthor = useGlobalDispatchAddAuthor("ADD_FAV_AUTHOR");
-  const removeFavouriteAuthor = useGlobalDispatchRemove("REMOVE_FAV_AUTHOR");
+  const addFavouriteAuthor = useDispatchAddAuthor("ADD_FAV_AUTHOR");
+  const removeFavouriteAuthor = useDispatchRemove("REMOVE_FAV_AUTHOR");
 
   const ifAuthorIsFavourite = (key: string) =>
     ifAuthorIsFavouriteUtil(key, state.favouriteAuthors);

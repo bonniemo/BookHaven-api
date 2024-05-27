@@ -1,4 +1,4 @@
-import { useFetch } from "../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch";
 
 export type Quote = {
   _id: string;

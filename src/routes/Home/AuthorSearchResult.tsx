@@ -1,4 +1,5 @@
-import DisplayAuthors from "../../components/DisplayAuthors";
+
+import DisplayAuthors from "../../components/DisplayComponents/DisplayAuthors";
 import { SearchAuthorProps } from "../../types/Types";
 
 const AuthorSearchResult = ({ data }: SearchAuthorProps) => {

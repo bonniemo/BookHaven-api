@@ -1,4 +1,4 @@
-import DisplayBooks from "../../components/DisplayBooks";
+import DisplayBooks from "../../components/DisplayComponents/DisplayBooks";
 
 const FavouriteBooks = () => {
   return (

@@ -1,6 +1,6 @@
-import { DisplayDataCardProps } from "../types/Types";
-import FavouriteToggleButton from "./ButtonComponents/FavouriteToggleButton";
-import ReadingHistoryButton from "./ButtonComponents/ReadingHistoryButton";
+import { DisplayDataCardProps } from "../../types/Types";
+import FavouriteToggleButton from "../ButtonComponents/FavouriteToggleButton";
+import ReadingHistoryButton from "../ButtonComponents/ReadingHistoryButton";
 
 const DisplayDataCard = ({
   imgUrl,

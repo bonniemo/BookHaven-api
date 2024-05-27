@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { GlobalContext } from "../state/GlobalStateContext";
-import { calculateMostReadAuthor } from "../utils/calculateMostReadAuthor";
+import { GlobalContext } from "../../state/GlobalStateContext";
+import { calculateMostReadAuthor } from "../../utils/calculateMostReadAuthor";
 
 const MostReadAuthor = () => {
   const { state } = useContext(GlobalContext);
